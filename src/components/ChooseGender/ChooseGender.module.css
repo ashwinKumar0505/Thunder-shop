@@ -1,0 +1,113 @@
+.NewIn {
+  font-family: 'Arizonia', cursive;
+  font-size: 120px;
+  font-weight: 400;
+}
+
+.Offer {
+  background-color: #e0e1fe;
+  padding: 50px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  flex: 1;
+}
+
+.Offer {
+  text-align: center;
+}
+
+.men {
+  flex: 1;
+  position: relative;
+}
+
+.men img {
+  z-index: 100px;
+}
+
+.MenButton {
+  background-color: black;
+  color: white;
+  padding: 15px 40px;
+  width: 78%;
+  outline: none;
+  font-size: 1.1em;
+  border: none;
+  font-weight: 800;
+  letter-spacing: 3px;
+  cursor: pointer;
+  z-index: 500px;
+  position: absolute;
+  bottom: 89px;
+  left: 37px;
+}
+
+
+.women {
+  flex: 1;
+  position: relative;
+}
+
+.WomenButton {
+  background-color: black;
+  color: white;
+  padding: 15px 40px;
+  width: 78%;
+  outline: none;
+  font-size: 1.1em;
+  border: none;
+  font-weight: 800;
+  letter-spacing: 3px;
+  cursor: pointer;
+  z-index: 500px;
+  position: absolute;
+  bottom: 89px;
+  right: 58px;
+}
+
+.styles {
+  letter-spacing: 15px;
+  margin: 20px;
+  background-color: white;
+  text-align: center;
+}
+
+.Price {
+  text-align: center;
+  margin: 20px;
+  letter-spacing: 5px;
+  font-weight: 600
+}
+
+.Price p {
+  margin: 10px;
+}
+
+.ChooseGender {
+  display: flex;
+}
+
+
+.MenButton:hover {
+  box-shadow: white 0px -1px 12px 11px;
+  transform: translateY(-10%)
+}
+.WomenButton:hover{
+  box-shadow: white 0px -1px 12px 11px;
+  transform: translateY(-10%)
+}
+
+.MenButton:active,.WomenButton:hover {
+  transform: translateY(0%)
+}
+
+@media (max-width:1000px){
+  .ChooseGender{
+    flex-direction: column;
+  }
+  .Offer{
+    padding:0
+  }
+}

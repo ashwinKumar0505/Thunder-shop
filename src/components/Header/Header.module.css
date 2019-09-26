@@ -1,0 +1,40 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 20px;
+  background-color: bisque;
+  align-self: center;
+}
+
+
+.Header h1 {
+  flex: 1
+}
+
+.NavItems {
+  flex: 3;
+  display: flex;
+  justify-content: space-around;
+  align-self: center;
+}
+.NavItems p{
+  cursor: pointer;
+  width:100%;
+  text-align: center;
+}
+.NavItems p:hover{
+  color:white;
+}
+
+
+.Images {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-self: center;
+}
+.Images img{
+  margin:0px 20px;
+  cursor: pointer;
+}

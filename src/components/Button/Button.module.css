@@ -1,0 +1,23 @@
+.Button{
+    background-color:black;
+    color: white;
+    padding: 15px 40px;
+    width: 43%;
+    outline: none;
+    font-size: 1.1em;
+    border: none;
+    font-weight: 800;
+    align-self: center;
+    margin:41px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    z-index: 500px;
+}
+.Button:hover{
+  box-shadow:white 0px -1px 12px 11px;
+  transform: translateY(-10%)
+}
+.Button:active{
+  transform: translateY(0%)
+
+}
