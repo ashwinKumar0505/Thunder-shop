@@ -1,0 +1,37 @@
+.Brands{
+  height:300px;
+  overflow-y: scroll;
+  min-width:200px; 
+  width:100%;
+  margin-bottom:30px;
+  
+}
+.BrandNames{
+  padding:5px 0;
+}
+.EachPrice{
+   padding:5px 0;  
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+.CheckBox{
+  height: 17px;
+  width: 22px;
+  background-color: #eee;
+  margin-right: 10px;
+  font-size:1em;
+  cursor: pointer;
+}

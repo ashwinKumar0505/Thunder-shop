@@ -1,0 +1,21 @@
+.SearchField{
+  width: 34%;
+  display: flex;
+}
+.search {
+  width: 90%;
+  padding: 5px 10px;
+  line-height: 24px;
+  color: #696E79;
+  background: #F5F5F6;
+  border:none;
+  outline: none;
+}
+
+.searchIcon{
+  width:10%;
+  padding:10px 10px;
+  background: #F5F5F6;
+    position: relative;
+  left:10px;
+}

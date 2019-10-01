@@ -99,7 +99,7 @@
   transform: translateY(-10%)
 }
 
-.MenButton:active,.WomenButton:hover {
+.MenButton:active,.WomenButton:active {
   transform: translateY(0%)
 }
 
