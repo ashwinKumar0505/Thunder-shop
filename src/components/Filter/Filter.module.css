@@ -9,7 +9,7 @@
 .BrandNames{
   padding:5px 0;
 }
-.EachPrice{
+.EachPrice,.Discount{
    padding:5px 0;  
 }
 ::-webkit-scrollbar {

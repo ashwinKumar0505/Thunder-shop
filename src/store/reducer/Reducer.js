@@ -17,13 +17,19 @@ const Reducer=(state=initialState,action)=>{
        fetched:true,
        showMore:false
      };
-    case(actionTypes.STORING_WOMEN_DETAILS):
+    case (actionTypes.STORING_WOMEN_DETAILS):
     return {
       ...state,
       women:[...state.women,action.data],
       fetched:true,
       showMore:false
     }
+    case (actionTypes.LOAD_MORE):
+      console.log("here")
+      return {
+        ...state,
+        showMore:true
+      }
    default:return state;
  }
 }

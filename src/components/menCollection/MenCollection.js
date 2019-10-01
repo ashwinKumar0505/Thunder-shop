@@ -1,19 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 
-import { gettingMenDetails } from "../../store/action/ActionCreators";
+import { gettingMenDetails, loadMore } from "../../store/action/ActionCreators";
 import classes from "./MenCollection.module.css";
 import SortBy from "../sortBy/SortBy";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
-import Dress from "../Dress/Dress"
+import Dress from "../Dress/Dress";
 const MenCollection = props => {
+  const handleScroll = useCallback(() => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+      document.documentElement.offsetHeight
+    )
+      return;
+    else{
+    props.loadMore();
+    return;
+    }
+  });
   useEffect(() => {
     props.gettingMenDetails(props.showMore);
-  }, [props]);
-  console.log(props.men);
+  }, [handleScroll, props]);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  },[handleScroll]);
   return (
-    <div className={classes.MenCollection}>
+    <div className={classes.MenCollection} style={{ overflow: "auto" }}>
       <div className={classes.SearchDiv}>
         <p
           style={{
@@ -30,10 +45,11 @@ const MenCollection = props => {
       </div>
       <div className={classes.Products}>
         <div className={classes.Filters}>
-        <Filter />
+          <Filter />
         </div>
-        <div className={classes.Dresses}></div>
-        <Dress />
+        <div className={classes.Dresses}>
+          <Dress />
+        </div>
       </div>
     </div>
   );
@@ -48,6 +64,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     gettingMenDetails: showMore => dispatch(gettingMenDetails(showMore)),
+    loadMore: () => dispatch(loadMore()),
   };
 };
 export default connect(

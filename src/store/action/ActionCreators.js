@@ -44,3 +44,8 @@ export const storingWomenDetails = data => {
     data: data,
   };
 };
+export const loadMore=()=>{
+  return {
+    type:actionTypes.LOAD_MORE
+  }
+}

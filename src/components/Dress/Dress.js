@@ -5,26 +5,37 @@ import Spinner2 from "../Spinner2/Spinner2";
 const Dress = props => {
   return props.fetched ? (
     <div className={classes.Dresses}>
-      {props.men[0].productsArray.map(product => {
-        return (
-          <div className={classes.EachDress}>
-            <img src={product.imagesArray[0]} alt="dress image" />
-            <br></br>
-            <p>{product.title}</p>
-            <p style={{fontWeight:"800"}}>{product.brandName}</p>
-            <p>
-              <span style={{ marginRight:"10px"}}>Rs.{product.price}</span>
-              <span style={{textDecoration:"line-through"}}>Rs.{product.crossedPrice}</span>
-            </p>
-              <span style={{color:"#f24e6b",marginBottom:"25px"}}>({product.discount}% discount)</span>{" "}
-          <button className={classes.CartButton}>Add to cart</button>
-          </div>
-        );
+      {props.men.map(man => {
+        return man.productsArray.map(product => {
+          return (
+            <div className={classes.EachDress}>
+              <img src={product.imagesArray[0]} alt="dress image" />
+              <br></br>
+              <p>{product.title}</p>
+              <p style={{ fontWeight: "800" }}>{product.brandName}</p>
+              <p>
+                <span style={{ marginRight: "10px" }}>Rs.{product.price}</span>
+                <span style={{ textDecoration: "line-through" }}>
+                  Rs.{product.crossedPrice}
+                </span>
+              </p>
+              <span style={{ color: "#f24e6b", marginBottom: "25px" }}>
+                ({product.discount}% discount)
+              </span>{" "}
+              <button className={classes.CartButton}>Add to cart</button>
+            </div>
+          );
+        });
       })}
+      {props.showMore ? (
+        <div className={classes.spinner}>
+          <Spinner2 />
+        </div>
+      ) : null}
     </div>
   ) : (
     <div className={classes.spinner}>
-    <Spinner2 />
+      <Spinner2 />
     </div>
   );
 };
@@ -32,6 +43,7 @@ const mapStateToProps = state => {
   return {
     men: state.men,
     fetched: state.fetched,
+    showMore: state.showMore,
   };
 };
 export default connect(mapStateToProps)(Dress);

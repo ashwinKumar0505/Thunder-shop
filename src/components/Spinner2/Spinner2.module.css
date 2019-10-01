@@ -1,10 +1,6 @@
 
 .spinner {
   color: black;
-  margin-top:40%;
-  margin-left:10%;
-  min-height: 100vh;
-  width:90%;
 }
 
 .spinner:after {

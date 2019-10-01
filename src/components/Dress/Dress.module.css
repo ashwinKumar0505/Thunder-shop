@@ -46,3 +46,10 @@
 .CartButton:active{
   transform: translateY(0)
 }
+.spinner{
+   display: block;
+   width: 73vw;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
