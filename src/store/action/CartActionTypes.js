@@ -1,0 +1,2 @@
+export const STORE_THE_ITEM="STORE_THE_ITEM"
+export const DELETE_THE_ITEM="DELETE_THE_ITEM"

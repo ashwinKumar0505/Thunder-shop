@@ -1,0 +1,23 @@
+.MyCart{
+  width:100%;
+  height:87vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:#fbfbfb;
+  flex-direction: column;
+  line-height: 50px;
+  font-size: 1em;
+}
+.MyCart button{
+  padding:0px 10px;
+  color:#f1517b;
+  outline:none; 
+  background:#fbfbfb;
+  border:1px solid #f1517b;
+  font-weight: 800;
+  cursor:pointer;
+}
+.MyCart h2{
+  margin:0;
+}

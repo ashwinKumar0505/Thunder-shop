@@ -1,8 +1,9 @@
 import React from "react";
-import classes from "./ChooseGender.module.css";
+import {NavLink} from "react-router-dom"
 import Button from "../Button/Button";
 import men from "../../assets/men.jpg"
 import women from "../../assets/women1.jpg"
+import classes from "./ChooseGender.module.css";
 
 const ChooseGender = () => {
   return (
@@ -15,21 +16,21 @@ const ChooseGender = () => {
         <h3 className={classes.styles}> TREATS</h3>
         <div className={classes.Price}>
         <p>&#x20b9;500 OFF*</p>
-        <p>ON &#x20b9;1999<span>Take 500</span></p>
+        <p>ON &#x20b9;1999<span> Take 500</span></p>
         </div>
         <div className={classes.Price}>
           <p>&#x20b9;1000 OFF*</p>
-          <p>&#x20b9;2999 <span>Take 1000</span></p>
+          <p>ON &#x20b9;2999 <span>Take 1000</span></p>
         </div>
         <Button>SHOP NOW</Button>
       </div>
       <div className={classes.men}>
       <img src={men} alt="men-icon" height= "100%"width= "100%"/>
-      <button className={classes.MenButton}> MEN COLLECTION</button>
+      <NavLink to="/men-collection"><button className={classes.MenButton}> MEN COLLECTION</button></NavLink>
       </div>
       <div className={classes.women}>
       <img src={women} alt="men-icon" height= "100%"width= "100%"/>
-      <button className={classes.WomenButton}> WOMEN COLLECTION</button>
+       <NavLink to="/women-collection"><button className={classes.WomenButton}> WOMEN COLLECTION</button></NavLink>
       </div>
     </div>
   );

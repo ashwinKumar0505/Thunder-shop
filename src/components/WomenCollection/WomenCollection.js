@@ -1,13 +1,13 @@
 import React, { useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 
-import { gettingMenDetails, loadMore } from "../../store/action/ActionCreators";
-import classes from "./MenCollection.module.css";
+import { gettingWomenDetails, loadMore } from "../../store/action/ActionCreators";
 import SortBy from "../sortBy/SortBy";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
-const MenCollection = props => {
+import classes from "./WomenCollection.module.css";
+const WomenCollection = props => {
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop !==
@@ -20,7 +20,7 @@ const MenCollection = props => {
     }
   });
   useEffect(() => {
-    props.gettingMenDetails(props.showMore,props.page);
+    props.gettingWomenDetails(props.showMore,props.page);
   }, [props]);
 
   useEffect(() => {
@@ -43,12 +43,12 @@ const MenCollection = props => {
         <SearchField />
         <SortBy />
       </div>
-      <div className={classes.Products} >
-        <div className={classes.Filters} >
-          <Filter details={props.men} fetched={ props.fetched }/>
+      <div className={classes.Products}>
+        <div className={classes.Filters}>
+          <Filter details={props.women} fetched={props.fetched}/>
         </div>
-        <div className={classes.Dresses} >
-          <Dress details={props.men} fetched={ props.fetched } />
+        <div className={classes.Dresses}>
+          <Dress details={props.women} fetched={props.fetched}/>
         </div>
       </div>
     </div>
@@ -57,7 +57,7 @@ const MenCollection = props => {
 
 const mapStateToProps = state => {
   return {
-    men: state.Reducer.men,
+    women: state.Reducer.women,
     showMore: state.Reducer.showMore,
     fetched:state.Reducer.fetched,
     page:state.Reducer.page
@@ -65,11 +65,11 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    gettingMenDetails: (showMore,page) => dispatch(gettingMenDetails(showMore,page)),
+    gettingWomenDetails: (showMore,page) => dispatch(gettingWomenDetails(showMore,page)),
     loadMore: () => dispatch(loadMore()),
   };
 };
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(MenCollection);
+)(WomenCollection);

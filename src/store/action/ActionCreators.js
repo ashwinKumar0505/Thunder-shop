@@ -1,11 +1,36 @@
-import * as actionTypes from "./ActionTypes";
+import * as actionTypes from "./StoreActionTypes";
 import axios from "axios";
 
-export const gettingMenDetails = showMore => {
+
+export const gettingAllDetails= (showMore,page) =>{
+   if (showMore) {
+    return dispatch => {
+      axios
+        .get("https://fresh-rope-219511.appspot.com")
+        .then(Response => {
+          dispatch(storingAllDetails(Response.data));
+        })
+        .catch(error => {
+          return error;
+        });
+    };
+  } else {
+    return { type: actionTypes.DONT_STORE };
+  }
+}
+
+export const storingAllDetails=data=>{
+  return {
+    type:actionTypes.STORING_ALL_DETAILS,
+    data:data
+  }
+}
+
+export const gettingMenDetails = (showMore,page) => {
   if (showMore) {
     return dispatch => {
       axios
-        .get("https://fresh-rope-219511.appspot.com/?gender=men")
+        .get("https://fresh-rope-219511.appspot.com/?page="+page+"&&gender=men")
         .then(Response => {
           dispatch(storingMenDetails(Response.data));
         })
@@ -25,18 +50,23 @@ export const storingMenDetails = data => {
   };
 };
 
-export const gettingWomenDetails = () => {
-  return dispatch => {
-    axios
-      .get("https://fresh-rope-219511.appspot.com/?gender=women")
-      .then(Response => {
-        dispatch(storingWomenDetails(Response.data));
-      })
-      .catch(error => {
-        return error;
-      });
-  };
+export const gettingWomenDetails = (showMore,page) => {
+     if (showMore) {
+    return dispatch => {
+      axios
+        .get("https://fresh-rope-219511.appspot.com/?page="+page+"&&gender=women")
+        .then(Response => {
+          dispatch(storingWomenDetails(Response.data));
+        })
+        .catch(error => {
+          return error;
+        });
+    };
+  } else {
+    return { type: actionTypes.DONT_STORE };
+  }
 };
+
 
 export const storingWomenDetails = data => {
   return {

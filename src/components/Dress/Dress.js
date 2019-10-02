@@ -1,15 +1,22 @@
-import React from "react";
+import React,{useRef} from "react";
 import { connect } from "react-redux";
 import classes from "./Dress.module.css";
 import Spinner2 from "../Spinner2/Spinner2";
 const Dress = props => {
+
+ const myRef=useRef(null)
+
+  const showImages=(event,images)=>{
+    console.log(images)
+    console.log(myRef);
+}
   return props.fetched ? (
     <div className={classes.Dresses}>
-      {props.men.map(man => {
-        return man.productsArray.map(product => {
+      {props.details.map(detail => {
+        return detail.productsArray.map(product => {
           return (
-            <div className={classes.EachDress}>
-              <img src={product.imagesArray[0]} alt="dress image" />
+            <div className={classes.EachDress} key={product.title} onMouseOver={(event)=>showImages(event,product.imagesArray)} >
+              <img src={product.imagesArray[0]} alt="dress image" ref={myRef}/>
               <br></br>
               <p>{product.title}</p>
               <p style={{ fontWeight: "800" }}>{product.brandName}</p>
@@ -41,9 +48,7 @@ const Dress = props => {
 };
 const mapStateToProps = state => {
   return {
-    men: state.men,
-    fetched: state.fetched,
-    showMore: state.showMore,
+    showMore: state.Reducer.showMore,
   };
 };
 export default connect(mapStateToProps)(Dress);

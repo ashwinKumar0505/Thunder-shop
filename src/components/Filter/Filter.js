@@ -4,15 +4,15 @@ import Spinner2 from "../Spinner2/Spinner2";
 import classes from "./Filter.module.css";
 const Filter = props => {
   const array=[]
-  
+  console.log("filter"+props.fetched)
   return (
     <div>
       <p style={{ fontWeight: "800", color: "#f24e6b" }}>BRANDS</p>
       <br></br>
       <div className={classes.Brands}>
-        {props.fetched ? (
+        {props.details[0] ? (
           <div>
-            {props.men[0].brands.map((data, index) => {
+            {props.details[0].brands.map((data, index) => {
               if (array.length !== 0) {
                 data = data.toLowerCase();
                 if (array.includes(data)) {
@@ -81,11 +81,4 @@ const Filter = props => {
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    men: state.men,
-    fetched: state.fetched,
-  };
-};
-
-export default connect(mapStateToProps)(Filter);
+export default Filter;
