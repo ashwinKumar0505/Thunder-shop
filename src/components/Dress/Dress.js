@@ -1,7 +1,9 @@
 import React,{useRef} from "react";
 import { connect } from "react-redux";
-import classes from "./Dress.module.css";
 import Spinner2 from "../Spinner2/Spinner2";
+import {storeTheItem} from '../../store/action/CartActionCreators'
+
+import classes from "./Dress.module.css";
 const Dress = props => {
 
  const myRef=useRef(null)
@@ -29,7 +31,7 @@ const Dress = props => {
               <span style={{ color: "#f24e6b", marginBottom: "25px" }}>
                 ({product.discount}% discount)
               </span>{" "}
-              <button className={classes.CartButton}>Add to cart</button>
+              <button className={classes.CartButton} onClick={()=>props.storeTheItem(product)}>Add to cart</button>
             </div>
           );
         });
@@ -51,4 +53,9 @@ const mapStateToProps = state => {
     showMore: state.Reducer.showMore,
   };
 };
-export default connect(mapStateToProps)(Dress);
+const mapDispatchToProps=dispatch=>{
+  return {
+      storeTheItem:(details)=>dispatch(storeTheItem(details))
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(Dress);
