@@ -7,11 +7,20 @@ const initialState={
 const CartReducer=(state=initialState,action)=>{
   switch(action.type)
   {
-    case (actionTypes.STORE_THE_ITEM):{
+    case actionTypes.STORE_THE_ITEM:{
       return {
         items:[...state.items,action.itemDetails]
       }
     }
+    case actionTypes.DELETE_THE_ITEM:{
+        console.log("deleteee")
+        console.log(action.index)
+      const newItems=state.items.slice(action.index,1)
+     return {
+        items:newItems
+     }
+    }
+
     default:return state;
   }
 }
