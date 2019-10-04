@@ -9,7 +9,19 @@
 
 
 .Header h1 {
-  flex: 1
+  flex: 1;
+  cursor: pointer;
+}
+
+.Header a {
+  text-decoration: none;
+}
+
+.NavItems a:active,
+.NavItems a:hover,
+.NavItems a.active
+{
+  color: #f24e6b;
 }
 
 .NavItems {
@@ -18,16 +30,13 @@
   justify-content: space-around;
   align-self: center;
 }
-.NavItems p{
+
+.NavItems p {
   cursor: pointer;
-  width:100%;
+  width: 100%;
   text-align: center;
   font-weight: 800;
 }
-.NavItems p:hover{
-  color:#f24e6b;
-}
-
 
 .Images {
   flex: 1;
@@ -35,7 +44,37 @@
   justify-content: flex-end;
   align-self: center;
 }
-.Images img{
-  margin:0px 20px;
+
+.Images img {
+  margin: 0px 20px;
   cursor: pointer;
+}
+
+.line {
+  height: 5px;
+  width: 30px;
+  background-color: rgb(242, 78, 107);
+}
+
+.burger {
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  display: none;
+}
+
+
+@media (max-width:760px) {
+  .Header h1 {
+    display: none;
+  }
+
+  .NavItems {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
 }

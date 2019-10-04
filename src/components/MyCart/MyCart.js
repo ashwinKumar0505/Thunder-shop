@@ -73,7 +73,7 @@ const MyCart = props => {
                           <option value="40">40</option>
                           <option value="42">42</option>
                         </select>
-                        <span style={{ marginLeft: "10px" }}>Quantity:</span>
+                        <span style={{ marginLeft: "10px" }} className={classes.quantity}>Quantity:</span>
                         <select>
                           <option value="1">1</option>
                           <option value="1">2</option>

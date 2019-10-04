@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 
 import { gettingMenDetails, loadMore } from "../../store/action/ActionCreators";
 import classes from "./MenCollection.module.css";
-import SortBy from "../sortBy/SortBy";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
@@ -41,7 +40,6 @@ const MenCollection = props => {
           FILTERS
         </p>
         <SearchField />
-        <SortBy />
       </div>
       <div className={classes.Products} >
         <div className={classes.Filters} >

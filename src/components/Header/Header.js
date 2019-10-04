@@ -1,23 +1,39 @@
-import React from "react";
+import React,{useState} from "react";
 import { NavLink } from "react-router-dom";
 import cart from "../../assets/cart3.png";
 import login from "../../assets/login1.png";
 import classes from "./Header.module.css";
+import SideDrawer from "../SideDrawer/SideDrawer"
 const Header = () => {
+  const [showSideDrawer,setShowSideDrawer]=useState("none")
+  const showHandler=()=>{
+      setShowSideDrawer("flex")
+  }
+  const hideHandler=()=>{
+    setShowSideDrawer("none")
+  }
   return (
     <div className={classes.Header}>
-      <h1>THUNDER</h1>
+      <div className={classes.burger} onClick={showHandler}>
+        <div className={classes.line}></div>
+        <div className={classes.line}></div>
+        <div className={classes.line}></div>
+      </div>
+      <SideDrawer display={showSideDrawer} hideHandler={hideHandler}/>
+      <NavLink to="/" exact activeClassName={classes.active}>
+        <h1>THUNDER</h1>
+      </NavLink>
       <div className={classes.NavItems}>
-        <NavLink to="/">
+        <NavLink to="/new" exact activeClassName={classes.active}>
           <p>NEW-IN</p>
         </NavLink>
-        <NavLink to="/men-collection">
+        <NavLink to="/men-collection" exact activeClassName={classes.active}>
           <p>MEN-SALE</p>
         </NavLink>
-        <NavLink to="/women-collection">
+        <NavLink to="/women-collection" exact activeClassName={classes.active}>
           <p>WOMEN-SALE</p>
         </NavLink>
-        <NavLink to="/">
+        <NavLink to="/top" exact activeClassName={classes.active}>
           <p>TOP-BRANDS</p>
         </NavLink>
       </div>

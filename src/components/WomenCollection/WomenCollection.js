@@ -2,7 +2,6 @@ import React, { useEffect, useCallback } from "react";
 import { connect } from "react-redux";
 
 import { gettingWomenDetails, loadMore } from "../../store/action/ActionCreators";
-import SortBy from "../sortBy/SortBy";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
@@ -41,7 +40,6 @@ const WomenCollection = props => {
           FILTERS
         </p>
         <SearchField />
-        <SortBy />
       </div>
       <div className={classes.Products}>
         <div className={classes.Filters}>

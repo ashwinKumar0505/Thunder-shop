@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { connect } from "react-redux";
+import React from "react";
 import Spinner2 from "../Spinner2/Spinner2";
 import classes from "./Filter.module.css";
 const Filter = props => {
   const array=[]
-  console.log("filter"+props.fetched)
   return (
-    <div>
+    <div className={classes.filter}>
       <p style={{ fontWeight: "800", color: "#f24e6b" }}>BRANDS</p>
       <br></br>
       <div className={classes.Brands}>

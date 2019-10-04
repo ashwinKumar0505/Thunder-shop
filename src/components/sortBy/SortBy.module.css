@@ -29,3 +29,8 @@
 .types p{
   padding:10px 20px;
 }
+@media (max-width:650px){
+  .SortByText{
+    margin-left:40px;
+  }
+}

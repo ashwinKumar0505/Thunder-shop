@@ -114,6 +114,7 @@
 
 .RemoveAndMove button {
   width: 100%;
+  height:100%;
   background: #ffffff;
   border: 3px solid #fee4c4;
   padding: 6px;
@@ -180,4 +181,27 @@ padding-top:10px;
 }
 .placeOrder:active{
   transform: translateY(0px)
+}
+
+@media (max-width:750px){
+  .cart{
+    flex-direction: column;
+  }
+  .order{
+    padding:0
+  }
+  .RemoveAndMove{
+    font-size: 0.8em
+  }
+  .eachItem{
+    padding:0;
+    margin:0;
+  }
+  .eachItem img{
+    width:25%;
+    margin-right: 15px;
+  }
+  .quantity{
+    display: block;
+  }
 }

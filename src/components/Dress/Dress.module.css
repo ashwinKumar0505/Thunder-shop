@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
   width:100%;
-  margin:0px 30px;
 }
 
 .EachDress img {
@@ -53,4 +52,18 @@
    display: flex;
    justify-content: center;
    align-items: center;
+}
+
+@media (max-width:950px){
+  .EachDress{
+    width: 35%;
+  }
+}
+@media (max-width:750px){
+  .Dresses{
+    flex-direction: column;
+  }
+  .EachDress{
+    width:75%;
+  }
 }
