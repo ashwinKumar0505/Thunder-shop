@@ -6,6 +6,7 @@ const initialState = {
   women: [],
   fetched: false,
   showMore: true,
+  disable:false
 };
 
 const Reducer = (state = initialState, action) => {
