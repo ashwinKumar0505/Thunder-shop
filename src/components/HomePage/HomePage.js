@@ -6,11 +6,13 @@ import classes from './HomePage.module.css';
 import MenCollection from "../menCollection/MenCollection"
 import MyCart from '../MyCart/MyCart';
 import WomenCollection from '../WomenCollection/WomenCollection';
+import AllCollection from "../AllCollection/AllCollection"
 const HomePage=()=>{
   return (
     <div className={classes.HomePage}>
       <Header />
       <Switch>
+        <Route path="/all-collection" component={AllCollection} />
         <Route path="/men-collection" component={MenCollection} />
         <Route path="/women-collection" component={WomenCollection} />
         <Route path="/my-cart" component={MyCart} /> 

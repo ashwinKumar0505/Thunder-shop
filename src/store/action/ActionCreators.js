@@ -6,7 +6,7 @@ export const gettingAllDetails= (showMore,page) =>{
    if (showMore) {
     return dispatch => {
       axios
-        .get("https://fresh-rope-219511.appspot.com")
+        .get("https://fresh-rope-219511.appspot.com/?page="+page)
         .then(Response => {
           dispatch(storingAllDetails(Response.data));
         })

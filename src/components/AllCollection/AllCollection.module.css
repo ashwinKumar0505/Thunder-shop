@@ -1,0 +1,40 @@
+.SearchDiv {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 20px;
+  border-bottom: 1px solid #eaeaec;
+  box-sizing: border-box;
+}
+
+.search {
+  width: 30%;
+}
+
+.Products {
+  display: flex;
+  padding: 50px 50px;
+}
+
+.Filters {
+  padding-right: 50px;
+  border-right: 1px solid #eaeaec;
+}
+
+@media (max-width:650px) {
+  .SearchDiv {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 223px;
+
+  }
+
+  .Filters {
+    display: none;
+  }
+
+  .search {
+    width: 100%;
+  }
+}

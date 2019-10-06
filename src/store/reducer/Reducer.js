@@ -16,6 +16,7 @@ const Reducer = (state = initialState, action) => {
         details: [...state.details, action.data],
         fetched: true,
         showMore: false,
+        page:state.page+1
       };
 
     case actionTypes.STORING_MEN_DETAILS:
