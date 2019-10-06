@@ -5,7 +5,6 @@ const initialState = {
   men: [],
   women: [],
   fetched: false,
-  showMore: true,
 };
 
 const Reducer = (state = initialState, action) => {
@@ -15,7 +14,6 @@ const Reducer = (state = initialState, action) => {
         ...state,
         details: [...state.details, action.data],
         fetched: true,
-        showMore: false,
         page:state.page+1
       };
 
@@ -24,7 +22,6 @@ const Reducer = (state = initialState, action) => {
         ...state,
         men: [...state.men, action.data],
         fetched: true,
-        showMore: false,
         page:state.page+1
       };
     case actionTypes.STORING_WOMEN_DETAILS:
@@ -32,16 +29,12 @@ const Reducer = (state = initialState, action) => {
         ...state,
         women: [...state.women, action.data],
         fetched: true,
-        showMore: false,
         page:state.page+1
       };
-    case actionTypes.LOAD_MORE:
-      return {
-        ...state,
-        showMore: true,
-      };
+
     default:
       return state;
   }
 };
+
 export default Reducer;

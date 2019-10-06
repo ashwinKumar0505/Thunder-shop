@@ -36,7 +36,7 @@ const Dress = props => {
           );
         });
       })}
-      {props.showMore ? (
+      {props.fetched ? (
         <div className={classes.spinner}>
           <Spinner2 />
         </div>
@@ -50,7 +50,7 @@ const Dress = props => {
 };
 const mapStateToProps = state => {
   return {
-    showMore: state.Reducer.showMore,
+    fetched: state.Reducer.fetched,
   };
 };
 const mapDispatchToProps=dispatch=>{
