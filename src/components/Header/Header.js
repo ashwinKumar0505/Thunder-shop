@@ -24,7 +24,7 @@ const Header = () => {
         <h1>THUNDER</h1>
       </NavLink>
       <div className={classes.NavItems}>
-        <NavLink to="/new" exact activeClassName={classes.active}>
+        <NavLink to="/all-collection" exact activeClassName={classes.active}>
           <p>NEW-IN</p>
         </NavLink>
         <NavLink to="/men-collection" exact activeClassName={classes.active}>
@@ -38,9 +38,6 @@ const Header = () => {
         </NavLink>
       </div>
       <div className={classes.Images}>
-        <span>
-          <img src={login} alt="login-icon" width="50px" height="50px" />
-        </span>
         <NavLink to="/my-cart">
           <span>
             <img src={cart} alt="cart-icon" width="70px" height="50px" />

@@ -2,11 +2,10 @@ import * as actionTypes from "./StoreActionTypes";
 import axios from "axios";
 
 
-export const gettingAllDetails= (showMore,page) =>{
-   if (showMore) {
+export const gettingAllDetails= (page) =>{
     return dispatch => {
       axios
-        .get("https://fresh-rope-219511.appspot.com")
+        .get("https://fresh-rope-219511.appspot.com/?page="+page)
         .then(Response => {
           dispatch(storingAllDetails(Response.data));
         })
@@ -14,11 +13,7 @@ export const gettingAllDetails= (showMore,page) =>{
           return error;
         });
     };
-  } else {
-    return { type: actionTypes.DONT_STORE };
-  }
 }
-
 export const storingAllDetails=data=>{
   return {
     type:actionTypes.STORING_ALL_DETAILS,
@@ -26,8 +21,7 @@ export const storingAllDetails=data=>{
   }
 }
 
-export const gettingMenDetails = (showMore,page) => {
-  if (showMore) {
+export const gettingMenDetails = (page) => {
     return dispatch => {
       axios
         .get("https://fresh-rope-219511.appspot.com/?page="+page+"&&gender=men")
@@ -38,11 +32,7 @@ export const gettingMenDetails = (showMore,page) => {
           return error;
         });
     };
-  } else {
-    return { type: actionTypes.DONT_STORE };
-  }
-};
-
+}
 export const storingMenDetails = data => {
   return {
     type: actionTypes.STORING_MEN_DETAILS,
@@ -50,8 +40,7 @@ export const storingMenDetails = data => {
   };
 };
 
-export const gettingWomenDetails = (showMore,page) => {
-     if (showMore) {
+export const gettingWomenDetails = (page) => {
     return dispatch => {
       axios
         .get("https://fresh-rope-219511.appspot.com/?page="+page+"&&gender=women")
@@ -62,10 +51,7 @@ export const gettingWomenDetails = (showMore,page) => {
           return error;
         });
     };
-  } else {
-    return { type: actionTypes.DONT_STORE };
-  }
-};
+  } 
 
 
 export const storingWomenDetails = data => {
@@ -74,8 +60,4 @@ export const storingWomenDetails = data => {
     data: data,
   };
 };
-export const loadMore=()=>{
-  return {
-    type:actionTypes.LOAD_MORE
-  }
-}
+

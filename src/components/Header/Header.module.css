@@ -67,7 +67,8 @@
 
 @media (max-width:760px) {
   .Header h1 {
-    display: none;
+    font-size: 2em;
+    margin:0px 20px;
   }
 
   .NavItems {

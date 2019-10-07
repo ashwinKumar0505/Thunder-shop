@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { gettingWomenDetails } from "../../store/action/ActionCreators";
+import { gettingAllDetails } from "../../store/action/ActionCreators";
+import classes from "./AllCollection.module.css";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
-import classes from "./WomenCollection.module.css";
-class WomenCollection extends Component {
+class AllCollection extends Component {
   componentDidMount() {
-    this.props.gettingWomenDetails(this.props.page);
+    this.props.gettingAllDetails(this.props.page);
   }
-
   componentDidUpdate() {
     window.addEventListener("scroll", this.handleScroll);
     return () => window.removeEventListener("scroll", this.handleScroll);
@@ -98,14 +97,14 @@ class WomenCollection extends Component {
     )
       return;
     else {
-      console.log(this.props.gettingWomenDetails(this.props.page));
-      this.props.gettingWomenDetails(this.props.page);
+      this.props.gettingAllDetails(this.props.page);
       return;
     }
   };
+
   render() {
     return (
-      <div className={classes.WomenCollection} style={{ overflow: "auto" }}>
+      <div className={classes.AllCollection} style={{ overflow: "auto" }}>
         <div className={classes.SearchDiv}>
           <p
             style={{
@@ -122,7 +121,7 @@ class WomenCollection extends Component {
         <div className={classes.Products}>
           <div className={classes.Filters}>
             <Filter
-              details={this.props.women}
+              details={this.props.details}
               fetched={this.props.fetched}
               filteringItems={this.filteringItems}
               setPriceRange={this.setPriceRange}
@@ -132,7 +131,7 @@ class WomenCollection extends Component {
           </div>
           <div className={classes.Dresses}>
             <Dress
-              details={this.props.women}
+              details={this.props.details}
               fetched={this.props.fetched}
               filterBrands={this.state.filterBrands}
               initialPrice={this.state.initialPrice}
@@ -147,17 +146,17 @@ class WomenCollection extends Component {
 }
 const mapStateToProps = state => {
   return {
-    women: state.Reducer.women,
+    details: state.Reducer.details,
     fetched: state.Reducer.fetched,
     page: state.Reducer.page,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
-    gettingWomenDetails: page => dispatch(gettingWomenDetails(page)),
+    gettingAllDetails: page => dispatch(gettingAllDetails(page)),
   };
 };
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(WomenCollection);
+)(AllCollection);
