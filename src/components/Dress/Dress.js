@@ -9,7 +9,7 @@ const Dress = props => {
 
   return props.fetched ? (
     <div className={classes.Dresses}>
-      {props.details.map(detail => {
+      {props.details.map((detail,index) => {
         return detail.productsArray.map(product => {
           if (props.filterBrands.length > 0 ) {
             if (props.filterBrands.includes(product.brandName.toLowerCase()) && product.price>=props.initialPrice && product.price<=props.finalPrice &&product.discount>=props.discount) {
