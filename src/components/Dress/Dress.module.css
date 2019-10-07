@@ -41,7 +41,7 @@
   cursor: pointer;
 }
 .CartButton:hover{
-  transform: translateY(-5px)
+  transform: translateY(-3px)
 }
 .CartButton:active{
   transform: translateY(0)
