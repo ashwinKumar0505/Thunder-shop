@@ -6,7 +6,6 @@ const initialState = {
 };
 
 const CartReducer = (state = initialState, action) => {
-  console.log(action.type);
   switch (action.type) {
     case actionTypes.STORE_THE_ITEM:
       return {
@@ -15,8 +14,6 @@ const CartReducer = (state = initialState, action) => {
         disable:[...state.disable,action.itemDetails.productId]
       };
     case actionTypes.DELETE_THE_ITEM:
-      console.log("deleteee");
-      console.log(action.index);
       const newItems = state.items.filter((item,index)=>{
         if(index===action.index){
           return false

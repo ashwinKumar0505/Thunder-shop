@@ -40,12 +40,15 @@ class WomenCollection extends Component {
     discountArray: [],
     selectedOption: "option0",
     productToBeSearched: null,
+    loadMore:true
   };
+
   filteringItems = event => {
     const brandName = event.target.name;
     if (event.target.checked) {
       this.setState({
         filterBrands: [...this.state.filterBrands, brandName],
+        loadMore:false
       });
     } else {
       const index = this.state.filterBrands.indexOf(brandName);
@@ -53,6 +56,7 @@ class WomenCollection extends Component {
       newFilterBrands.splice(index, 1);
       this.setState({
         filterBrands: newFilterBrands,
+        loadMore:true
       });
     }
   };
@@ -60,10 +64,14 @@ class WomenCollection extends Component {
     const indexValue = index;
     if (event.target.checked) {
       this.state.price[indexValue].present = true;
-      this.forceUpdate();
+      this.setState({
+        loadMore:false
+      })
     } else {
       this.state.price[indexValue].present = false;
-      this.forceUpdate();
+      this.setState({
+        loadMore:true
+      })
     }
 
     let initialAmount = 0;
@@ -93,6 +101,8 @@ class WomenCollection extends Component {
   };
 
   handleScroll = () => {
+    if(this.state.loadMore)
+    {
     if (
       window.innerHeight + document.documentElement.scrollTop !==
       document.documentElement.offsetHeight
@@ -102,9 +112,27 @@ class WomenCollection extends Component {
       this.props.gettingWomenDetails(this.props.page);
       return;
     }
+  }
+  else
+  {
+    return ;
+  }
+
   };
 
   searchProduct = event => {
+    if(event.target.value)
+    {
+      this.setState({
+        loadMore:false
+      })
+    }
+    else
+    {
+      this.setState({
+        loadMore:true
+      })
+    }
     this.setState({
       productToBeSearched: event.target.value,
     });
@@ -134,6 +162,7 @@ class WomenCollection extends Component {
               setPriceRange={this.setPriceRange}
               setDiscountRange={this.setDiscountRange}
               selectedOption={this.state.selectedOption}
+              
             />
           </div>
           <div className={classes.Dresses}>
@@ -145,6 +174,7 @@ class WomenCollection extends Component {
               finalPrice={this.state.finalPrice}
               discount={this.state.discount}
               productToBeSearched={this.state.productToBeSearched}
+              loadMore={this.state.loadMore}
             />
           </div>
         </div>

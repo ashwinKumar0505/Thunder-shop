@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux"
 import cart from "../../assets/cart3.png";
 import SideDrawer from "../SideDrawer/SideDrawer";
 import classes from "./Header.module.css";
-const Header = () => {
+const Header = (props) => {
   const [showSideDrawer, setShowSideDrawer] = useState("none");
   const showHandler = () => {
     setShowSideDrawer("flex");
@@ -39,12 +40,18 @@ const Header = () => {
       <div className={classes.Images}>
         <NavLink to="/my-cart">
           <span>
-            <img src={cart} alt="cart-icon" width="70px" height="50px" />
+            <img src={cart} alt="cart-icon" width="70px" height="50px" className={classes.cartImage}/>
           </span>
         </NavLink>
+            <span className={classes.itemsCount}>{props.items.length}</span>
       </div>
     </div>
   );
 };
+const mapStateToProps=state=>{
+  return {
+    items:state.CartReducer.items
+  }
+}
 
-export default Header;
+export default connect(mapStateToProps)(Header);
