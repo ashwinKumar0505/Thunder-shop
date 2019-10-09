@@ -12,7 +12,8 @@
 
 .Products {
   display: flex;
-  padding: 50px 50px;
+  padding: 50px 0px 50px 50px;
+
 }
 
 .Filters {
@@ -29,7 +30,6 @@
     height: 223px;
 
   }
-
   .Filters {
     display: none;
   }

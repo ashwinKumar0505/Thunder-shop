@@ -39,6 +39,7 @@ class WomenCollection extends Component {
     ],
     discountArray: [],
     selectedOption: "option0",
+    productToBeSearched: null,
   };
   filteringItems = event => {
     const brandName = event.target.name;
@@ -98,10 +99,15 @@ class WomenCollection extends Component {
     )
       return;
     else {
-      console.log(this.props.gettingWomenDetails(this.props.page));
       this.props.gettingWomenDetails(this.props.page);
       return;
     }
+  };
+
+  searchProduct = event => {
+    this.setState({
+      productToBeSearched: event.target.value,
+    });
   };
   render() {
     return (
@@ -117,7 +123,7 @@ class WomenCollection extends Component {
           >
             FILTERS
           </p>
-          <SearchField />
+          <SearchField searchProduct={this.searchProduct} />
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>
@@ -138,6 +144,7 @@ class WomenCollection extends Component {
               initialPrice={this.state.initialPrice}
               finalPrice={this.state.finalPrice}
               discount={this.state.discount}
+              productToBeSearched={this.state.productToBeSearched}
             />
           </div>
         </div>

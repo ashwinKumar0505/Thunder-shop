@@ -39,6 +39,7 @@ class AllCollection extends Component {
     ],
     discountArray: [],
     selectedOption: "option0",
+    productToBeSearched: null,
   };
   filteringItems = event => {
     const brandName = event.target.name;
@@ -57,13 +58,10 @@ class AllCollection extends Component {
   };
   setPriceRange = (event, initial, final, index) => {
     const indexValue = index;
-    if (event.target.checked)
-     {
+    if (event.target.checked) {
       this.state.price[indexValue].present = true;
       this.forceUpdate();
-    }
-     else
-      {
+    } else {
       this.state.price[indexValue].present = false;
       this.forceUpdate();
     }
@@ -106,6 +104,12 @@ class AllCollection extends Component {
     }
   };
 
+  searchProduct = event => {
+    this.setState({
+      productToBeSearched: event.target.value,
+    });
+  };
+
   render() {
     return (
       <div className={classes.AllCollection} style={{ overflow: "auto" }}>
@@ -120,7 +124,7 @@ class AllCollection extends Component {
           >
             FILTERS
           </p>
-          <SearchField />
+          <SearchField searchProduct={this.searchProduct} />
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>
@@ -141,6 +145,7 @@ class AllCollection extends Component {
               initialPrice={this.state.initialPrice}
               finalPrice={this.state.finalPrice}
               discount={this.state.discount}
+              productToBeSearched={this.state.productToBeSearched}
             />
           </div>
         </div>
