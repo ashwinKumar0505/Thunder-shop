@@ -17,7 +17,6 @@ const Dress = props => {
     <div className={classes.Dresses}>
       {props.details.map((detail, index) => {
         results = detail.productsArray.length + results;
-        console.log("results=" + results);
         return detail.productsArray.map(product => {
           if (props.filterBrands.length > 0) {
             if (
@@ -84,8 +83,6 @@ const Dress = props => {
                     <span style={{ color: "#f24e6b", marginBottom: "25px" }}>
                       ({product.discount}% discount)
                     </span>{" "}
-                    {console.log(props.disable)}
-                    {console.log(product.productId)}
                     <button
                       className={classes.CartButton}
                       disabled={props.disable.includes(product.productId)}
