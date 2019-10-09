@@ -140,8 +140,13 @@ class MenCollection extends Component {
               letterSpacing: "5px",
             }}
           >
-            FILTERS
+            MEN COLLECTION
           </p>
+          <br></br>
+          <button className={classes.filterButton}>
+            Click Here For Filters
+          </button>
+          <br></br>
           <SearchField searchProduct={this.searchProduct} />
         </div>
         <div className={classes.Products}>

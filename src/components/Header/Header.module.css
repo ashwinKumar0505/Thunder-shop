@@ -4,7 +4,7 @@
   margin: 0;
   padding: 20px;
   background-color: bisque;
-  align-self: center;
+  align-items: center;
 }
 
 
@@ -40,19 +40,20 @@
 .Images {
   flex: 1;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-around;
   align-self: center;
 }
 
 .Images img {
   margin: 0px 20px;
   cursor: pointer;
+  align-self: center;
 }
 
 .line {
   height: 5px;
   width: 30px;
-  background-color: rgb(242, 78, 107);
+  background-color: black;
 }
 
 .burger {
@@ -65,17 +66,21 @@
 
 .itemsCount {
   position: relative;
-  top: 0px;
+  top: -48px;
   border-radius: 57%;
   background-color: #f24e6b;
   color: white;
-  right: 50px;
-  width: 20px;
+  right: -19px;
+  width: 22px;
   height: 19px;
   text-align: center;
 }
 
 @media (max-width:760px) {
+  .Header {
+    padding: 5px
+  }
+
   .Header h1 {
     font-size: 2em;
     margin: 0px 20px;

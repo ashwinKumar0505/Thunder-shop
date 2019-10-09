@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { connect } from "react-redux"
+import { connect } from "react-redux";
 import cart from "../../assets/cart3.png";
+import wish from "../../assets/wish.png";
 import SideDrawer from "../SideDrawer/SideDrawer";
 import classes from "./Header.module.css";
-const Header = (props) => {
+const Header = props => {
   const [showSideDrawer, setShowSideDrawer] = useState("none");
   const showHandler = () => {
     setShowSideDrawer("flex");
@@ -38,20 +39,32 @@ const Header = (props) => {
         </NavLink>
       </div>
       <div className={classes.Images}>
+            <img
+              src={wish}
+              alt="wish-list"
+              width="45px"
+              height="40px"
+              style={{ margin: "0px" }}
+            />
         <NavLink to="/my-cart">
-          <span>
-            <img src={cart} alt="cart-icon" width="70px" height="50px" className={classes.cartImage}/>
-          </span>
+              <img
+                src={cart}
+                alt="cart-icon"
+                width="60px"
+                height="50px"
+                style={{ margin: "0px" }}
+                className={classes.cartImage}
+              />
+              <div className={classes.itemsCount}>{props.items.length}</div>
         </NavLink>
-            <span className={classes.itemsCount}>{props.items.length}</span>
       </div>
     </div>
   );
 };
-const mapStateToProps=state=>{
+const mapStateToProps = state => {
   return {
-    items:state.CartReducer.items
-  }
-}
+    items: state.CartReducer.items,
+  };
+};
 
 export default connect(mapStateToProps)(Header);

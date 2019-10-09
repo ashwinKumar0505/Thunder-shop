@@ -19,7 +19,7 @@
     position: relative;
   left:10px;
 }
-@media (max-width:650px){
+@media (max-width:750px){
   .SearchField{
   width:100%;
   }

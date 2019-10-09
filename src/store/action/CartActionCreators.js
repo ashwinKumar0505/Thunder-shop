@@ -8,8 +8,6 @@ export const storeTheItem=(itemDetails)=>{
 }
 
 export const deleteTheItem=(index)=>{
-  console.log("action")
-  console.log(index)
    return {
     type:actionTypes.DELETE_THE_ITEM,
     index:index
