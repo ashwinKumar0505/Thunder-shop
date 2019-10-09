@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { gettingAllDetails } from "../../store/action/ActionCreators";
-import classes from "./AllCollection.module.css";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
+
+import classes from "./AllCollection.module.css";
 class AllCollection extends Component {
   componentDidMount() {
     this.props.gettingAllDetails(this.props.page);
@@ -38,12 +39,15 @@ class AllCollection extends Component {
     ],
     discountArray: [],
     selectedOption: "option0",
+    productToBeSearched: null,
+    loadMore: true,
   };
   filteringItems = event => {
     const brandName = event.target.name;
     if (event.target.checked) {
       this.setState({
         filterBrands: [...this.state.filterBrands, brandName],
+        loadMore: false,
       });
     } else {
       const index = this.state.filterBrands.indexOf(brandName);
@@ -51,6 +55,7 @@ class AllCollection extends Component {
       newFilterBrands.splice(index, 1);
       this.setState({
         filterBrands: newFilterBrands,
+        loadMore: true,
       });
     }
   };
@@ -58,10 +63,14 @@ class AllCollection extends Component {
     const indexValue = index;
     if (event.target.checked) {
       this.state.price[indexValue].present = true;
-      this.forceUpdate();
+      this.setState({
+        loadMore: false,
+      });
     } else {
       this.state.price[indexValue].present = false;
-      this.forceUpdate();
+      this.setState({
+        loadMore: true,
+      });
     }
 
     let initialAmount = 0;
@@ -91,15 +100,34 @@ class AllCollection extends Component {
   };
 
   handleScroll = () => {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
-    )
-      return;
-    else {
-      this.props.gettingAllDetails(this.props.page);
+    if (this.state.loadMore) {
+      if (
+        window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight
+      )
+        return;
+      else {
+        this.props.gettingAllDetails(this.props.page);
+        return;
+      }
+    } else {
       return;
     }
+  };
+
+  searchProduct = event => {
+    if (event.target.value) {
+      this.setState({
+        loadMore: false,
+      });
+    } else {
+      this.setState({
+        loadMore: true,
+      });
+    }
+    this.setState({
+      productToBeSearched: event.target.value,
+    });
   };
 
   render() {
@@ -116,7 +144,7 @@ class AllCollection extends Component {
           >
             FILTERS
           </p>
-          <SearchField />
+          <SearchField searchProduct={this.searchProduct} />
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>
@@ -137,6 +165,8 @@ class AllCollection extends Component {
               initialPrice={this.state.initialPrice}
               finalPrice={this.state.finalPrice}
               discount={this.state.discount}
+              productToBeSearched={this.state.productToBeSearched}
+              loadMore={this.state.loadMore}
             />
           </div>
         </div>

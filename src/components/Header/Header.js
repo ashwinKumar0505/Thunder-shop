@@ -1,17 +1,17 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux"
 import cart from "../../assets/cart3.png";
-import login from "../../assets/login1.png";
+import SideDrawer from "../SideDrawer/SideDrawer";
 import classes from "./Header.module.css";
-import SideDrawer from "../SideDrawer/SideDrawer"
-const Header = () => {
-  const [showSideDrawer,setShowSideDrawer]=useState("none")
-  const showHandler=()=>{
-      setShowSideDrawer("flex")
-  }
-  const hideHandler=()=>{
-    setShowSideDrawer("none")
-  }
+const Header = (props) => {
+  const [showSideDrawer, setShowSideDrawer] = useState("none");
+  const showHandler = () => {
+    setShowSideDrawer("flex");
+  };
+  const hideHandler = () => {
+    setShowSideDrawer("none");
+  };
   return (
     <div className={classes.Header}>
       <div className={classes.burger} onClick={showHandler}>
@@ -19,7 +19,7 @@ const Header = () => {
         <div className={classes.line}></div>
         <div className={classes.line}></div>
       </div>
-      <SideDrawer display={showSideDrawer} hideHandler={hideHandler}/>
+      <SideDrawer display={showSideDrawer} hideHandler={hideHandler} />
       <NavLink to="/" exact activeClassName={classes.active}>
         <h1>THUNDER</h1>
       </NavLink>
@@ -40,12 +40,18 @@ const Header = () => {
       <div className={classes.Images}>
         <NavLink to="/my-cart">
           <span>
-            <img src={cart} alt="cart-icon" width="70px" height="50px" />
+            <img src={cart} alt="cart-icon" width="70px" height="50px" className={classes.cartImage}/>
           </span>
         </NavLink>
+            <span className={classes.itemsCount}>{props.items.length}</span>
       </div>
     </div>
   );
 };
+const mapStateToProps=state=>{
+  return {
+    items:state.CartReducer.items
+  }
+}
 
-export default Header;
+export default connect(mapStateToProps)(Header);

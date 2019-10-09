@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React,{useState} from "react";
 import { connect } from "react-redux";
+import { NavLink } from "react-router-dom"
 import bag from "../../assets/empty_bag.gif";
 import truck from "../../assets/truck1.png";
 import {deleteTheItem} from "../../store/action/CartActionCreators"
@@ -8,10 +9,15 @@ const MyCart = props => {
   let total = 0;
   let crossedTotal = 0;
   let totalDiscount = 0;
+  const [quantity,setQuantity]=useState(1)
+
+  const changeQuantity=(event)=>{
+   setQuantity(event.target.value)
+  }
   props.items.map(item => {
-    total = total + item.price;
-    crossedTotal = crossedTotal + item.crossedPrice;
-    totalDiscount = totalDiscount + item.discount;
+    total = total + item.price * quantity;
+    crossedTotal = crossedTotal + item.crossedPrice * quantity;
+    totalDiscount = crossedTotal-total; 
   });
   return props.items.length>0 ? (
     <div className={classes.cart}>
@@ -74,34 +80,34 @@ const MyCart = props => {
                           <option value="42">42</option>
                         </select>
                         <span style={{ marginLeft: "10px" }} className={classes.quantity}>Quantity:</span>
-                        <select>
+                        <select onChange={changeQuantity}>
                           <option value="1">1</option>
-                          <option value="1">2</option>
-                          <option value="1">3</option>
-                          <option value="1">4</option>
-                          <option value="1">5</option>
-                          <option value="1">6</option>
-                          <option value="1">7</option>
-                          <option value="1">8</option>
-                          <option value="1">9</option>
-                          <option value="1">10</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
                         </select>
                       </p>
                     </div>
                     <div>
                       <p>
                         <span style={{ textDecoration: "line-through" }}>
-                          &#8377;{item.crossedPrice}
+                          &#8377;{item.crossedPrice * quantity}
                         </span>{" "}
                         <span style={{ marginLeft: "10px" }}>
-                          &#8377;{item.price}
+                          &#8377;{item.price * quantity}
                         </span>
                       </p>
                       <p style={{ color: "#ef60b3" }}>({item.discount}% OFF)</p>
                     </div>
                   </div>
                   <div className={classes.RemoveAndMove}>
-                    <button onClick={()=>deleteTheItem(index)}>Remove</button>
+                    <button onClick={()=>props.deleteTheItem(index)}>Remove</button>
                     <button>Move To WishList</button>
                   </div>
                 </div>
@@ -111,16 +117,8 @@ const MyCart = props => {
         </div>
       </div>
       <div className={classes.payment}>
-        <p style={{ fontWeight: "600", color: "rgb(3, 166, 133)" }}>Options</p>
-        <div className={classes.coupons}>
-          <p style={{ fontWeight: "800" }}>Coupons</p>
-          <button>APPLY</button>
-        </div>
-        <p style={{ margin: "10px 0" }}>
-          Log In to use use account-linked coupons
-        </p>
         <div className={classes.priceDetails}>
-          <p style={{ fontWeight: "600", color: "rgb(3, 166, 133)" }}>
+          <p style={{ fontWeight: "600", color: "rgb(3, 166, 133)" ,textAlign:"center"}}>
             Price Details
           </p>
           <div className={classes.price}>
@@ -146,7 +144,9 @@ const MyCart = props => {
           <p style={{ flex: "1" }}>Total</p>
           <p style={{ flex: "0 1 31%" }}>{total}</p>
         </div>
+        <div className={classes.cartButton}>
         <button className={classes.placeOrder}>PLACE ORDER</button>
+        </div>
       </div>
     </div>
   ) : (
@@ -156,7 +156,7 @@ const MyCart = props => {
       <p style={{ color: "#7e818c", marginBottom: "10px" }}>
         there is nothing in your bag.Let's add some items
       </p>
-      <button>Click Here To Browse</button>
+      <NavLink to="/all-collection"><button>Click Here To Browse</button></NavLink>
     </div>
   );
 };

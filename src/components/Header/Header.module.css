@@ -19,8 +19,7 @@
 
 .NavItems a:active,
 .NavItems a:hover,
-.NavItems a.active
-{
+.NavItems a.active {
   color: #f24e6b;
 }
 
@@ -64,11 +63,22 @@
   display: none;
 }
 
+.itemsCount {
+  position: relative;
+  top: 0px;
+  border-radius: 57%;
+  background-color: #f24e6b;
+  color: white;
+  right: 50px;
+  width: 20px;
+  height: 19px;
+  text-align: center;
+}
 
 @media (max-width:760px) {
   .Header h1 {
     font-size: 2em;
-    margin:0px 20px;
+    margin: 0px 20px;
   }
 
   .NavItems {
