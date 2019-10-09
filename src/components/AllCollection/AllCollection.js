@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import { gettingAllDetails } from "../../store/action/ActionCreators";
-import classes from "./AllCollection.module.css";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
+
+import classes from "./AllCollection.module.css";
 class AllCollection extends Component {
   componentDidMount() {
     this.props.gettingAllDetails(this.props.page);
@@ -56,10 +57,13 @@ class AllCollection extends Component {
   };
   setPriceRange = (event, initial, final, index) => {
     const indexValue = index;
-    if (event.target.checked) {
+    if (event.target.checked)
+     {
       this.state.price[indexValue].present = true;
       this.forceUpdate();
-    } else {
+    }
+     else
+      {
       this.state.price[indexValue].present = false;
       this.forceUpdate();
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import {NavLink} from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import Button from "../Button/Button";
 import men from "../../assets/men.jpg"
 import women from "../../assets/women1.jpg"
@@ -22,7 +22,7 @@ const ChooseGender = () => {
           <p>&#x20b9;1000 OFF*</p>
           <p>ON &#x20b9;2999 <span>Take 1000</span></p>
         </div>
-        <Button>SHOP NOW</Button>
+        <NavLink to="/all-collection"><Button>SHOP NOW</Button></NavLink>
       </div>
       <div className={classes.men}>
       <img src={men} alt="men-icon" height= "100%"width= "100%"/>

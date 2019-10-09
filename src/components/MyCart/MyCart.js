@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import bag from "../../assets/empty_bag.gif";
 import truck from "../../assets/truck1.png";
@@ -101,7 +101,7 @@ const MyCart = props => {
                     </div>
                   </div>
                   <div className={classes.RemoveAndMove}>
-                    <button onClick={()=>deleteTheItem(index)}>Remove</button>
+                    <button onClick={()=>props.deleteTheItem(index)}>Remove</button>
                     <button>Move To WishList</button>
                   </div>
                 </div>

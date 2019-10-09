@@ -53,6 +53,14 @@
    justify-content: center;
    align-items: center;
 }
+.notFound{
+      margin: 10px auto;
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 
 @media (max-width:950px){
   .EachDress{

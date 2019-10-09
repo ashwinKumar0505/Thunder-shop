@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import update from "react-addons-update";
-
 import { gettingMenDetails } from "../../store/action/ActionCreators";
-import classes from "./MenCollection.module.css";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
+
+import classes from "./MenCollection.module.css";
 
 class MenCollection extends Component {
   componentDidMount() {
@@ -39,7 +38,8 @@ class MenCollection extends Component {
       },
     ],
     discountArray: [],
-    selectedOption:"option0"
+    selectedOption:"option0",
+    productToBeSearched:null
   };
   filteringItems = event => {
     const brandName = event.target.name;
@@ -103,6 +103,11 @@ class MenCollection extends Component {
       return;
     }
   };
+  searchProduct=(event)=>{
+      this.setState({
+        productToBeSearched:event.target.value
+      })
+  }
   render() {
     return (
       <div className={classes.MenCollection} style={{ overflow: "auto" }}>
@@ -117,7 +122,7 @@ class MenCollection extends Component {
           >
             FILTERS
           </p>
-          <SearchField />
+          <SearchField searchProduct={this.searchProduct}/>
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>
@@ -138,6 +143,7 @@ class MenCollection extends Component {
               initialPrice={this.state.initialPrice}
               finalPrice={this.state.finalPrice}
               discount={this.state.discount}
+              productToBeSearched={this.state.productToBeSearched}
             />
           </div>
         </div>

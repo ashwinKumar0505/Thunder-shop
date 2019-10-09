@@ -2,11 +2,11 @@ import React from 'react';
 import {Route,Switch} from "react-router-dom"
 import Header from "../Header/Header"
 import ChooseGender from "../ChooseGender/ChooseGender"
-import classes from './HomePage.module.css';
 import MenCollection from "../menCollection/MenCollection"
 import MyCart from '../MyCart/MyCart';
 import WomenCollection from '../WomenCollection/WomenCollection';
 import AllCollection from "../AllCollection/AllCollection"
+import classes from './HomePage.module.css';
 const HomePage=()=>{
   return (
     <div className={classes.HomePage}>
