@@ -84,6 +84,8 @@ const Dress = props => {
                     <span style={{ color: "#f24e6b", marginBottom: "25px" }}>
                       ({product.discount}% discount)
                     </span>{" "}
+                    {console.log(props.disable)}
+                    {console.log(product.productId)}
                     <button
                       className={classes.CartButton}
                       disabled={props.disable.includes(product.productId)}
