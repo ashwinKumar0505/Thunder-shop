@@ -6,6 +6,7 @@ import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
 
 import classes from "./MenCollection.module.css";
+import Modal from "../Modal/Modal";
 
 class MenCollection extends Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ class MenCollection extends Component {
     selectedOption: "option0",
     productToBeSearched: null,
     loadMore: true,
+    showModal: false,
   };
   filteringItems = event => {
     const brandName = event.target.name;
@@ -98,6 +100,17 @@ class MenCollection extends Component {
       discount: discount,
     });
   };
+  clearFilters=()=>{
+      this.state.price[0].present = false;
+      this.state.price[1].present = false;
+      this.state.price[2].present = false;
+    this.setState({
+      filterBrands:[],
+      selectedOption:"option0",
+      discount:0,
+      loadMore:true
+    })
+  }
 
   handleScroll = () => {
     if (this.state.loadMore) {
@@ -128,9 +141,28 @@ class MenCollection extends Component {
       productToBeSearched: event.target.value,
     });
   };
+  changeModalState = () => {
+    console.log("here");
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  };
   render() {
     return (
       <div className={classes.MenCollection} style={{ overflow: "auto" }}>
+        <Modal
+          show={this.state.showModal}
+          changeModalState={this.changeModalState}
+          details={this.props.men}
+          fetched={this.props.fetched}
+          filteringItems={this.filteringItems}
+          setPriceRange={this.setPriceRange}
+          setDiscountRange={this.setDiscountRange}
+          selectedOption={this.state.selectedOption}
+          clearFilters={this.clearFilters}
+          filterBrands={this.state.filterBrands}
+          price={this.state.price}
+        />
         <div className={classes.SearchDiv}>
           <p
             style={{
@@ -143,7 +175,10 @@ class MenCollection extends Component {
             MEN COLLECTION
           </p>
           <br></br>
-          <button className={classes.filterButton}>
+          <button
+            className={classes.filterButton}
+            onClick={this.changeModalState}
+          >
             Click Here For Filters
           </button>
           <br></br>

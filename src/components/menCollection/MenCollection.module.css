@@ -28,6 +28,7 @@
   font-weight: 800;
   align-self: center;
   outline:none;
+  display: none
 }
 
 @media (max-width:750px) {
@@ -38,6 +39,9 @@
     justify-content: space-around;
     height: 223px;
 
+  }
+  .filterButton{
+    display: block;
   }
   .Filters {
     display: none;

@@ -1,0 +1,21 @@
+.Modal{
+  position: fixed;
+  top:0;
+  left:0;
+  width:100vw;
+  height:100vh;
+  background-color: white;
+  z-index: 100;
+  transform: translateY(-100vh)
+}
+
+body.Modal{
+  overflow: hidden;
+}
+
+@media (max-width:750px){
+  .Modal{
+  transform: translateY(0vh) ;
+  }
+}
+

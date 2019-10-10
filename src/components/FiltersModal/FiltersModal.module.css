@@ -1,0 +1,77 @@
+.Header {
+  background-color: blue;
+  color: white;
+  font-size: 1.2em;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.Filters {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  justify-content: space-between
+}
+
+.TypeOfFilter {
+  width: 40%;
+  text-align: center;
+}
+
+.TypeOfFilter p {
+  padding: 10px;
+  height: 9%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.FilterOptions {
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+.Brands {
+  height: 90%;
+  overflow-y: scroll;
+  min-width: 200px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.BrandNames {
+  padding: 5px 0;
+}
+
+.EachPrice,
+.Discount {
+  padding: 5px 0;
+   margin-right:30px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.CheckBox {
+  height: 17px;
+  width: 22px;
+  background-color: #eee;
+  margin-right: 10px;
+  font-size: 1em;
+  cursor: pointer;
+}

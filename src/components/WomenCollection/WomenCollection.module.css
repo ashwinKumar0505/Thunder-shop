@@ -20,14 +20,15 @@
   border-right: 1px solid #eaeaec;
 }
 
-.filterButton{
-  border:solid 2px #3466E8;
-  color:#3466E8;
+.filterButton {
+  border: solid 2px #3466E8;
+  color: #3466E8;
   background-color: transparent;
-  padding:10px 5px;
+  padding: 10px 5px;
   font-weight: 800;
   align-self: center;
-  outline:none;
+  outline: none;
+  display: none;
 }
 
 @media (max-width:750px) {
@@ -37,7 +38,10 @@
     align-items: flex-start;
     justify-content: space-around;
     height: 223px;
+  }
 
+  .filterButton {
+    display: block;
   }
 
   .Filters {

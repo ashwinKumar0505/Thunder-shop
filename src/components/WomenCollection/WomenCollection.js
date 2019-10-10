@@ -5,6 +5,8 @@ import { gettingWomenDetails } from "../../store/action/ActionCreators";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
+import Modal from "../Modal/Modal";
+
 import classes from "./WomenCollection.module.css";
 class WomenCollection extends Component {
   componentDidMount() {
@@ -40,7 +42,8 @@ class WomenCollection extends Component {
     discountArray: [],
     selectedOption: "option0",
     productToBeSearched: null,
-    loadMore:true
+    loadMore: true,
+    showModal: false,
   };
 
   filteringItems = event => {
@@ -48,7 +51,7 @@ class WomenCollection extends Component {
     if (event.target.checked) {
       this.setState({
         filterBrands: [...this.state.filterBrands, brandName],
-        loadMore:false
+        loadMore: false,
       });
     } else {
       const index = this.state.filterBrands.indexOf(brandName);
@@ -56,7 +59,7 @@ class WomenCollection extends Component {
       newFilterBrands.splice(index, 1);
       this.setState({
         filterBrands: newFilterBrands,
-        loadMore:true
+        loadMore: true,
       });
     }
   };
@@ -65,13 +68,13 @@ class WomenCollection extends Component {
     if (event.target.checked) {
       this.state.price[indexValue].present = true;
       this.setState({
-        loadMore:false
-      })
+        loadMore: false,
+      });
     } else {
       this.state.price[indexValue].present = false;
       this.setState({
-        loadMore:true
-      })
+        loadMore: true,
+      });
     }
 
     let initialAmount = 0;
@@ -101,45 +104,70 @@ class WomenCollection extends Component {
   };
 
   handleScroll = () => {
-    if(this.state.loadMore)
-    {
-    if (
-      window.innerHeight + document.documentElement.scrollTop !==
-      document.documentElement.offsetHeight
-    )
-      return;
-    else {
-      this.props.gettingWomenDetails(this.props.page);
+    if (this.state.loadMore) {
+      if (
+        window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight
+      )
+        return;
+      else {
+        this.props.gettingWomenDetails(this.props.page);
+        return;
+      }
+    } else {
       return;
     }
-  }
-  else
-  {
-    return ;
-  }
+  };
 
+  clearFilters = () => {
+    this.state.price[0].present = false;
+    this.state.price[1].present = false;
+    this.state.price[2].present = false;
+    this.setState({
+      filterBrands: [],
+      selectedOption: "option0",
+      discount: 0,
+      loadMore: true,
+    });
   };
 
   searchProduct = event => {
-    if(event.target.value)
-    {
+    if (event.target.value) {
       this.setState({
-        loadMore:false
-      })
-    }
-    else
-    {
+        loadMore: false,
+      });
+    } else {
       this.setState({
-        loadMore:true
-      })
+        loadMore: true,
+      });
     }
     this.setState({
       productToBeSearched: event.target.value,
     });
   };
+
+  changeModalState = () => {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  };
+
   render() {
     return (
       <div className={classes.WomenCollection} style={{ overflow: "auto" }}>
+        <Modal
+          show={this.state.showModal}
+          changeModalState={this.changeModalState}
+          details={this.props.women}
+          fetched={this.props.fetched}
+          filteringItems={this.filteringItems}
+          setPriceRange={this.setPriceRange}
+          setDiscountRange={this.setDiscountRange}
+          selectedOption={this.state.selectedOption}
+          clearFilters={this.clearFilters}
+          filterBrands={this.state.filterBrands}
+          price={this.state.price}
+        />
         <div className={classes.SearchDiv}>
           <p
             style={{
@@ -149,10 +177,13 @@ class WomenCollection extends Component {
               letterSpacing: "5px",
             }}
           >
-            FILTERS
+            WOMEN COLLECTION
           </p>
-           <br></br>
-          <button className={classes.filterButton}>
+          <br></br>
+          <button
+            className={classes.filterButton}
+            onClick={this.changeModalState}
+          >
             Click Here For Filters
           </button>
           <br></br>
@@ -167,7 +198,6 @@ class WomenCollection extends Component {
               setPriceRange={this.setPriceRange}
               setDiscountRange={this.setDiscountRange}
               selectedOption={this.state.selectedOption}
-              
             />
           </div>
           <div className={classes.Dresses}>
