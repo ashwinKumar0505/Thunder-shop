@@ -145,7 +145,6 @@ class AllCollection extends Component {
   };
 
   changeModalState = () => {
-    console.log("here");
     this.setState({
       showModal: !this.state.showModal,
     });
@@ -153,7 +152,7 @@ class AllCollection extends Component {
 
   render() {
     return (
-      <div className={classes.AllCollection} style={{ overflow: "auto" }}>
+      <div className={classes.AllCollection} style={{ overflow: "hidden" }}>
         <Modal
           show={this.state.showModal}
           changeModalState={this.changeModalState}

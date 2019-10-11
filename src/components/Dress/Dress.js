@@ -2,7 +2,12 @@ import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
 import Spinner2 from "../Spinner2/Spinner2";
 import { storeTheItem } from "../../store/action/CartActionCreators";
-
+import {
+  storeInWishList,
+  removeFromWishList,
+} from "../../store/action/WishList/WishActionCreators";
+import Heart from "../../assets/heart.png";
+import redHeart from "../../assets/redHeart.png";
 import classes from "./Dress.module.css";
 const Dress = props => {
   const myRef = useRef(null);
@@ -67,8 +72,32 @@ const Dress = props => {
                 product.discount >= props.discount
               ) {
                 return (
-                  <div className={classes.EachDress} key={product.title}>
-                    <img src={product.imagesArray[0]} alt="dress" ref={myRef} />
+                  <div className={classes.EachDress} key={product.productId}>
+                    {props.productId.includes(product.productId) ? (
+                      <img
+                        src={redHeart}
+                        alt="red-heart"
+                        width="30px"
+                        height="25px"
+                        className={classes.emptyHeart}
+                        onClick={()=>props.removeFromWishList(product.productId)}
+                      />
+                    ) : (
+                      <img
+                        src={Heart}
+                        alt="heart"
+                        width="30px"
+                        height="25px"
+                        className={classes.emptyHeart}
+                        onClick={() => props.storeInWishList(product)}
+                      />
+                    )}
+                    <img
+                      src={product.imagesArray[0]}
+                      alt="dress"
+                      ref={myRef}
+                      className={classes.DressImage}
+                    />
                     <br></br>
                     <p>{product.title}</p>
                     <p style={{ fontWeight: "800" }}>{product.brandName}</p>
@@ -104,8 +133,8 @@ const Dress = props => {
           }
         });
       })}
-      {props.filterBrands.length>0 && noMatch === results ? (
-        <div style={{width:"73vw",textAlign:"center"}}>
+      {props.filterBrands.length > 0 && noMatch === results ? (
+        <div style={{ width: "73vw", textAlign: "center" }}>
           <h4>Sorry...Those Brands were out of Stock</h4>
           <p>We will bring them soon</p>
         </div>
@@ -135,11 +164,14 @@ const mapStateToProps = state => {
   return {
     fetched: state.Reducer.fetched,
     disable: state.CartReducer.disable,
+    productId: state.WishReducer.productId,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     storeTheItem: details => dispatch(storeTheItem(details)),
+    storeInWishList: product => dispatch(storeInWishList(product)),
+    removeFromWishList:productId=>dispatch(removeFromWishList(productId))
   };
 };
 export default connect(

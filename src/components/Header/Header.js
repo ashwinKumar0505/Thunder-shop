@@ -39,23 +39,25 @@ const Header = props => {
         </NavLink>
       </div>
       <div className={classes.Images}>
-            <img
-              src={wish}
-              alt="wish-list"
-              width="45px"
-              height="40px"
-              style={{ margin: "0px" }}
-            />
+        <NavLink to="/wish-list">
+          <img
+            src={wish}
+            alt="wish-list"
+            width="50px"
+            height="50px"
+            style={{ margin: "0px" }}
+          />
+        </NavLink>
         <NavLink to="/my-cart">
-              <img
-                src={cart}
-                alt="cart-icon"
-                width="60px"
-                height="50px"
-                style={{ margin: "0px" }}
-                className={classes.cartImage}
-              />
-              <div className={classes.itemsCount}>{props.items.length}</div>
+          <img
+            src={cart}
+            alt="cart-icon"
+            width="60px"
+            height="50px"
+            style={{ margin: "0px" }}
+            className={classes.cartImage}
+          />
+          <div className={classes.itemsCount}>{props.items.length}</div>
         </NavLink>
       </div>
     </div>

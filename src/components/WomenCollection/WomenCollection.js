@@ -154,7 +154,7 @@ class WomenCollection extends Component {
 
   render() {
     return (
-      <div className={classes.WomenCollection} style={{ overflow: "auto" }}>
+      <div className={classes.WomenCollection} style={{ overflow: "hidden" }}>
         <Modal
           show={this.state.showModal}
           changeModalState={this.changeModalState}

@@ -151,6 +151,7 @@ const MyCart = props => {
     </div>
   ) : (
     <div className={classes.MyCart}>
+      <h3>YOUR CART IS EMPTY</h3>
       <img src={bag} alt="bag" width="250px" height="250px" />
       <h2>Hey , It feels so light!</h2>
       <p style={{ color: "#7e818c", marginBottom: "10px" }}>

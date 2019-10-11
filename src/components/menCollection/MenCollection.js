@@ -149,7 +149,7 @@ class MenCollection extends Component {
   };
   render() {
     return (
-      <div className={classes.MenCollection} style={{ overflow: "auto" }}>
+      <div className={classes.MenCollection} style={{ overflow: "hidden" }}>
         <Modal
           show={this.state.showModal}
           changeModalState={this.changeModalState}

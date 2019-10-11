@@ -7,6 +7,7 @@ import MyCart from '../MyCart/MyCart';
 import WomenCollection from '../WomenCollection/WomenCollection';
 import AllCollection from "../AllCollection/AllCollection"
 import classes from './HomePage.module.css';
+import WishList from '../WishList/WishList';
 const HomePage=()=>{
   return (
     <div className={classes.HomePage}>
@@ -16,6 +17,7 @@ const HomePage=()=>{
         <Route path="/men-collection" component={MenCollection} />
         <Route path="/women-collection" component={WomenCollection} />
         <Route path="/my-cart" component={MyCart} /> 
+        <Route path="/wish-list" component={WishList} />
         <Route path="/" component={ChooseGender} />
       </Switch>
      </div>

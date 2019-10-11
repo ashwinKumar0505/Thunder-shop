@@ -1,0 +1,86 @@
+.EmptyWishList {
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 464px;
+  margin: 0 auto;
+  max-width: 464px;
+
+}
+
+.Empty {
+  text-align: center;
+}
+
+.ContinueShopping {
+  border: solid 2px #3466E8;
+  color: #3466E8;
+  background-color: transparent;
+  padding: 10px 5px;
+  font-weight: 600;
+  align-self: center;
+  outline: none;
+  width: 80%;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+
+.ContinueShopping:hover {
+  background-color: aliceblue
+}
+
+.WishList {
+  width: 90vw;
+  margin: 50px auto;
+}
+
+.products {
+  display: flex;
+  width: 100%
+}
+
+.eachProduct {
+  width: 16%;
+  margin: 0px 30px;
+  border: 1px solid #D4D5D9;
+  position: relative;
+}
+.close{
+  position:absolute;
+  right:5px;
+  cursor: pointer;
+}
+
+.description {
+  padding-bottom: 30px;
+  border-bottom: 1px solid #D4D5D9;
+}
+
+.title {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.WishList h1{
+  text-align: center;
+  margin-bottom:70px;
+}
+.eachProduct p{
+    text-align: center;
+
+}
+.eachProduct button {
+  border: none;
+  color: #009688;
+  background-color: transparent;
+  padding: 10px 5px;
+  outline: none;
+  width: 100%;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+.eachProduct button:disabled{
+  color:grey;
+}
