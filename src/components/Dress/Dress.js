@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Spinner2 from "../Spinner2/Spinner2";
 import { storeTheItem } from "../../store/action/CartActionCreators";
 import {
@@ -32,7 +33,12 @@ const Dress = props => {
             ) {
               return (
                 <div className={classes.EachDress} key={product.productId}>
-                  <img src={product.imagesArray[0]} alt="dress" ref={myRef} />
+                  <img
+                    src={product.imagesArray[0]}
+                    alt="dress"
+                    ref={myRef}
+                    className={classes.DressImage}
+                  />
                   <br></br>
                   <p>{product.title}</p>
                   <p style={{ fontWeight: "800" }}>{product.brandName}</p>
@@ -49,9 +55,12 @@ const Dress = props => {
                   </span>{" "}
                   <button
                     className={classes.CartButton}
+                    disabled={props.disable.includes(product.productId)}
                     onClick={() => props.storeTheItem(product)}
                   >
-                    Add to cart
+                    {props.disable.includes(product.productId)
+                      ? "Product Added"
+                      : "Add to Cart"}
                   </button>
                 </div>
               );
@@ -72,7 +81,13 @@ const Dress = props => {
                 product.discount >= props.discount
               ) {
                 return (
-                  <div className={classes.EachDress} key={product.productId}>
+                  <div
+                    className={classes.EachDress}
+                    key={product.productId}
+                    onClick={() => {
+                      props.history.push("/each-product",product)
+                    }}
+                  >
                     {props.productId.includes(product.productId) ? (
                       <img
                         src={redHeart}
@@ -80,7 +95,11 @@ const Dress = props => {
                         width="30px"
                         height="25px"
                         className={classes.emptyHeart}
-                        onClick={()=>props.removeFromWishList(product.productId)}
+                        onClick={event => {
+                          event.stopPropagation();
+                          event.nativeEvent.stopImmediatePropagation();
+                          props.removeFromWishList(product.productId);
+                        }}
                       />
                     ) : (
                       <img
@@ -89,7 +108,11 @@ const Dress = props => {
                         width="30px"
                         height="25px"
                         className={classes.emptyHeart}
-                        onClick={() => props.storeInWishList(product)}
+                        onClick={event => {
+                          event.stopPropagation();
+                          event.nativeEvent.stopImmediatePropagation();
+                          props.storeInWishList(product);
+                        }}
                       />
                     )}
                     <img
@@ -115,7 +138,12 @@ const Dress = props => {
                     <button
                       className={classes.CartButton}
                       disabled={props.disable.includes(product.productId)}
-                      onClick={() => props.storeTheItem(product)}
+                      onClick={event => {
+                        console.log("yes");
+                        event.stopPropagation();
+                        event.nativeEvent.stopImmediatePropagation();
+                        props.storeTheItem(product);
+                      }}
                     >
                       {props.disable.includes(product.productId)
                         ? "Product Added"
@@ -171,7 +199,7 @@ const mapDispatchToProps = dispatch => {
   return {
     storeTheItem: details => dispatch(storeTheItem(details)),
     storeInWishList: product => dispatch(storeInWishList(product)),
-    removeFromWishList:productId=>dispatch(removeFromWishList(productId))
+    removeFromWishList: productId => dispatch(removeFromWishList(productId)),
   };
 };
 export default connect(

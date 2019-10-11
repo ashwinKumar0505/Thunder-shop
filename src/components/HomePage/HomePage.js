@@ -6,8 +6,9 @@ import MenCollection from "../menCollection/MenCollection"
 import MyCart from '../MyCart/MyCart';
 import WomenCollection from '../WomenCollection/WomenCollection';
 import AllCollection from "../AllCollection/AllCollection"
-import classes from './HomePage.module.css';
 import WishList from '../WishList/WishList';
+import EachProduct from "../EachProduct/EachProduct"
+import classes from './HomePage.module.css';
 const HomePage=()=>{
   return (
     <div className={classes.HomePage}>
@@ -16,6 +17,7 @@ const HomePage=()=>{
         <Route path="/all-collection" component={AllCollection} />
         <Route path="/men-collection" component={MenCollection} />
         <Route path="/women-collection" component={WomenCollection} />
+        <Route path="/each-product" component={EachProduct} />
         <Route path="/my-cart" component={MyCart} /> 
         <Route path="/wish-list" component={WishList} />
         <Route path="/" component={ChooseGender} />

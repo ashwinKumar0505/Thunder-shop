@@ -148,6 +148,7 @@ class MenCollection extends Component {
     });
   };
   render() {
+    console.log(this.props)
     return (
       <div className={classes.MenCollection} style={{ overflow: "hidden" }}>
         <Modal
@@ -205,6 +206,7 @@ class MenCollection extends Component {
               discount={this.state.discount}
               productToBeSearched={this.state.productToBeSearched}
               loadMore={this.state.loadMore}
+              history={this.props.history}
             />
           </div>
         </div>
