@@ -15,20 +15,10 @@ const CartReducer = (state = initialState, action) => {
       };
     case actionTypes.DELETE_THE_ITEM:
       const newItems = state.items.filter((item,index)=>{
-        if(index===action.index){
-          return false
-        }
-        else{
-          return item
-        }
+        return index===action.index ? false : item
       })
       const newDisable=state.disable.filter((item,index)=>{
-          if(index===action.index){
-          return false
-        }
-        else{
-          return item
-        }
+        return index===action.index ? false : item
       })
       return {
         ...state,

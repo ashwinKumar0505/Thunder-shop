@@ -151,6 +151,7 @@
 .priceDetails{
 border-top:1px dotted black;
 padding-top:10px;
+font-size: 1.2em;
 }
 .price {
   display: flex;
@@ -209,6 +210,7 @@ padding-top:10px;
   .eachItem{
     padding:0;
     margin:0;
+    padding-bottom: 5px;
   }
   .eachItem img{
     width:25%;

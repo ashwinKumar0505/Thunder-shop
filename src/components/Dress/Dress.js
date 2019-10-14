@@ -1,8 +1,14 @@
 import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Spinner2 from "../Spinner2/Spinner2";
 import { storeTheItem } from "../../store/action/CartActionCreators";
-
+import {
+  storeInWishList,
+  removeFromWishList,
+} from "../../store/action/WishList/WishActionCreators";
+import Heart from "../../assets/heart.png";
+import redHeart from "../../assets/redHeart.png";
 import classes from "./Dress.module.css";
 const Dress = props => {
   const myRef = useRef(null);
@@ -17,7 +23,6 @@ const Dress = props => {
     <div className={classes.Dresses}>
       {props.details.map((detail, index) => {
         results = detail.productsArray.length + results;
-        console.log("results=" + results);
         return detail.productsArray.map(product => {
           if (props.filterBrands.length > 0) {
             if (
@@ -28,7 +33,12 @@ const Dress = props => {
             ) {
               return (
                 <div className={classes.EachDress} key={product.productId}>
-                  <img src={product.imagesArray[0]} alt="dress" ref={myRef} />
+                  <img
+                    src={product.imagesArray[0]}
+                    alt="dress"
+                    ref={myRef}
+                    className={classes.DressImage}
+                  />
                   <br></br>
                   <p>{product.title}</p>
                   <p style={{ fontWeight: "800" }}>{product.brandName}</p>
@@ -45,9 +55,12 @@ const Dress = props => {
                   </span>{" "}
                   <button
                     className={classes.CartButton}
+                    disabled={props.disable.includes(product.productId)}
                     onClick={() => props.storeTheItem(product)}
                   >
-                    Add to cart
+                    {props.disable.includes(product.productId)
+                      ? "Product Added"
+                      : "Add to Cart"}
                   </button>
                 </div>
               );
@@ -68,8 +81,46 @@ const Dress = props => {
                 product.discount >= props.discount
               ) {
                 return (
-                  <div className={classes.EachDress} key={product.title}>
-                    <img src={product.imagesArray[0]} alt="dress" ref={myRef} />
+                  <div
+                    className={classes.EachDress}
+                    key={product.productId}
+                    onClick={() => {
+                      props.history.push("/each-product",product)
+                    }}
+                  >
+                    {props.productId.includes(product.productId) ? (
+                      <img
+                        src={redHeart}
+                        alt="red-heart"
+                        width="30px"
+                        height="25px"
+                        className={classes.emptyHeart}
+                        onClick={event => {
+                          event.stopPropagation();
+                          event.nativeEvent.stopImmediatePropagation();
+                          props.removeFromWishList(product.productId);
+                        }}
+                      />
+                    ) : (
+                      <img
+                        src={Heart}
+                        alt="heart"
+                        width="30px"
+                        height="25px"
+                        className={classes.emptyHeart}
+                        onClick={event => {
+                          event.stopPropagation();
+                          event.nativeEvent.stopImmediatePropagation();
+                          props.storeInWishList(product);
+                        }}
+                      />
+                    )}
+                    <img
+                      src={product.imagesArray[0]}
+                      alt="dress"
+                      ref={myRef}
+                      className={classes.DressImage}
+                    />
                     <br></br>
                     <p>{product.title}</p>
                     <p style={{ fontWeight: "800" }}>{product.brandName}</p>
@@ -84,12 +135,15 @@ const Dress = props => {
                     <span style={{ color: "#f24e6b", marginBottom: "25px" }}>
                       ({product.discount}% discount)
                     </span>{" "}
-                    {console.log(props.disable)}
-                    {console.log(product.productId)}
                     <button
                       className={classes.CartButton}
                       disabled={props.disable.includes(product.productId)}
-                      onClick={() => props.storeTheItem(product)}
+                      onClick={event => {
+                        console.log("yes");
+                        event.stopPropagation();
+                        event.nativeEvent.stopImmediatePropagation();
+                        props.storeTheItem(product);
+                      }}
                     >
                       {props.disable.includes(product.productId)
                         ? "Product Added"
@@ -107,8 +161,8 @@ const Dress = props => {
           }
         });
       })}
-      {props.filterBrands.length>0 && noMatch === results ? (
-        <div style={{width:"73vw",textAlign:"center"}}>
+      {props.filterBrands.length > 0 && noMatch === results ? (
+        <div style={{ width: "73vw", textAlign: "center" }}>
           <h4>Sorry...Those Brands were out of Stock</h4>
           <p>We will bring them soon</p>
         </div>
@@ -138,11 +192,14 @@ const mapStateToProps = state => {
   return {
     fetched: state.Reducer.fetched,
     disable: state.CartReducer.disable,
+    productId: state.WishReducer.productId,
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
     storeTheItem: details => dispatch(storeTheItem(details)),
+    storeInWishList: product => dispatch(storeInWishList(product)),
+    removeFromWishList: productId => dispatch(removeFromWishList(productId)),
   };
 };
 export default connect(

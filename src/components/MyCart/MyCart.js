@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { NavLink } from "react-router-dom"
 import bag from "../../assets/empty_bag.gif";
 import truck from "../../assets/truck1.png";
-import {deleteTheItem} from "../../store/action/CartActionCreators"
+import { deleteTheItem } from "../../store/action/CartActionCreators";
+import { storeInWishList } from "../../store/action/WishList/WishActionCreators"
 import classes from "./MyCart.module.css";
 const MyCart = props => {
   let total = 0;
@@ -66,12 +67,14 @@ const MyCart = props => {
                       display: "flex",
                       justifyContent: "space-between",
                       width: "100%",
+                      marginBottom:"15px"
                     }}
                   >
                     <div className={classes.description}>
                       <p>{item.title}</p>
                       <p style={{ fontWeight: "800" }}>{item.brandName}</p>
-                      <p>
+                      <p style={{display:"flex" , flexDirection:"column"}}>
+                        <div style={{display:"flex" , justifyContent:"space-between",marginBottom:"10px"}}>
                         <span>Size: </span>
                         <select>
                           <option value="38">38</option>
@@ -79,7 +82,9 @@ const MyCart = props => {
                           <option value="40">40</option>
                           <option value="42">42</option>
                         </select>
-                        <span style={{ marginLeft: "10px" }} className={classes.quantity}>Quantity:</span>
+                        </div>
+                        <div style={{display:"flex" , justifyContent:"space-between"}}>
+                        <span>Quantity:</span>
                         <select onChange={changeQuantity}>
                           <option value="1">1</option>
                           <option value="2">2</option>
@@ -92,10 +97,11 @@ const MyCart = props => {
                           <option value="9">9</option>
                           <option value="10">10</option>
                         </select>
+                        </div>
                       </p>
                     </div>
                     <div>
-                      <p>
+                      <p style={{width: "103px"}}>
                         <span style={{ textDecoration: "line-through" }}>
                           &#8377;{item.crossedPrice * quantity}
                         </span>{" "}
@@ -108,7 +114,10 @@ const MyCart = props => {
                   </div>
                   <div className={classes.RemoveAndMove}>
                     <button onClick={()=>props.deleteTheItem(index)}>Remove</button>
-                    <button>Move To WishList</button>
+                    <button 
+                    onClick={()=>props.storeInWishList(item)}
+                    disabled={props.productId.includes(item.productId)}>
+                      {props.productId.includes(item.productId) ? "WishListed" : "WISHLIST" }</button>
                   </div>
                 </div>
               </div>
@@ -151,9 +160,10 @@ const MyCart = props => {
     </div>
   ) : (
     <div className={classes.MyCart}>
+      <h3>YOUR CART IS EMPTY</h3>
       <img src={bag} alt="bag" width="250px" height="250px" />
       <h2>Hey , It feels so light!</h2>
-      <p style={{ color: "#7e818c", marginBottom: "10px" }}>
+      <p style={{ color: "#7e818c", marginBottom: "10px" ,textAlign:"center"}}>
         there is nothing in your bag.Let's add some items
       </p>
       <NavLink to="/all-collection"><button>Click Here To Browse</button></NavLink>
@@ -163,11 +173,13 @@ const MyCart = props => {
 const mapStateToProps = state => {
   return {
     items: state.CartReducer.items,
+    productId:state.WishReducer.productId
   };
 };
 const mapDispatchToProps=dispatch=>{
   return {
-    deleteTheItem:(index)=>dispatch(deleteTheItem(index))
+    deleteTheItem:(index)=>dispatch(deleteTheItem(index)),
+    storeInWishList:(product)=>dispatch(storeInWishList(product))
   }
 }
 

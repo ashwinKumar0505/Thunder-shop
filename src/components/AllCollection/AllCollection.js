@@ -5,6 +5,7 @@ import { gettingAllDetails } from "../../store/action/ActionCreators";
 import SearchField from "../SearchField/SearchField";
 import Filter from "../Filter/Filter";
 import Dress from "../Dress/Dress";
+import Modal from "../Modal/Modal";
 
 import classes from "./AllCollection.module.css";
 class AllCollection extends Component {
@@ -41,6 +42,7 @@ class AllCollection extends Component {
     selectedOption: "option0",
     productToBeSearched: null,
     loadMore: true,
+    showModal: false,
   };
   filteringItems = event => {
     const brandName = event.target.name;
@@ -99,6 +101,18 @@ class AllCollection extends Component {
     });
   };
 
+  clearFilters = () => {
+    this.state.price[0].present = false;
+    this.state.price[1].present = false;
+    this.state.price[2].present = false;
+    this.setState({
+      filterBrands: [],
+      selectedOption: "option0",
+      discount: 0,
+      loadMore: true,
+    });
+  };
+
   handleScroll = () => {
     if (this.state.loadMore) {
       if (
@@ -130,9 +144,28 @@ class AllCollection extends Component {
     });
   };
 
+  changeModalState = () => {
+    this.setState({
+      showModal: !this.state.showModal,
+    });
+  };
+
   render() {
     return (
-      <div className={classes.AllCollection} style={{ overflow: "auto" }}>
+      <div className={classes.AllCollection} style={{ overflow: "hidden" }}>
+        <Modal
+          show={this.state.showModal}
+          changeModalState={this.changeModalState}
+          details={this.props.details}
+          fetched={this.props.fetched}
+          filteringItems={this.filteringItems}
+          setPriceRange={this.setPriceRange}
+          setDiscountRange={this.setDiscountRange}
+          selectedOption={this.state.selectedOption}
+          clearFilters={this.clearFilters}
+          filterBrands={this.state.filterBrands}
+          price={this.state.price}
+        />
         <div className={classes.SearchDiv}>
           <p
             style={{
@@ -142,8 +175,16 @@ class AllCollection extends Component {
               letterSpacing: "5px",
             }}
           >
-            FILTERS
+            ALL COLLECTION
           </p>
+          <br></br>
+          <button
+            className={classes.filterButton}
+            onClick={this.changeModalState}
+          >
+            Click Here For Filters
+          </button>
+          <br></br>
           <SearchField searchProduct={this.searchProduct} />
         </div>
         <div className={classes.Products}>
@@ -167,6 +208,7 @@ class AllCollection extends Component {
               discount={this.state.discount}
               productToBeSearched={this.state.productToBeSearched}
               loadMore={this.state.loadMore}
+              history={this.props.history}
             />
           </div>
         </div>
