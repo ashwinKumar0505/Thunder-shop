@@ -42,7 +42,7 @@ class AllCollection extends Component {
     selectedOption: "option0",
     productToBeSearched: null,
     loadMore: true,
-    showModal: false
+    showModal: false,
   };
   filteringItems = event => {
     const brandName = event.target.name;
@@ -100,19 +100,19 @@ class AllCollection extends Component {
       discount: discount,
     });
   };
- 
-  clearFilters=()=>{
-      this.state.price[0].present = false;
-      this.state.price[1].present = false;
-      this.state.price[2].present = false;
+
+  clearFilters = () => {
+    this.state.price[0].present = false;
+    this.state.price[1].present = false;
+    this.state.price[2].present = false;
     this.setState({
-      filterBrands:[],
-      selectedOption:"option0",
-      discount:0,
-      loadMore:true
-    })
-  }
- 
+      filterBrands: [],
+      selectedOption: "option0",
+      discount: 0,
+      loadMore: true,
+    });
+  };
+
   handleScroll = () => {
     if (this.state.loadMore) {
       if (
@@ -178,7 +178,10 @@ class AllCollection extends Component {
             ALL COLLECTION
           </p>
           <br></br>
-          <button className={classes.filterButton} onClick={this.changeModalState}>
+          <button
+            className={classes.filterButton}
+            onClick={this.changeModalState}
+          >
             Click Here For Filters
           </button>
           <br></br>
@@ -205,6 +208,7 @@ class AllCollection extends Component {
               discount={this.state.discount}
               productToBeSearched={this.state.productToBeSearched}
               loadMore={this.state.loadMore}
+              history={this.props.history}
             />
           </div>
         </div>

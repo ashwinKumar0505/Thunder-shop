@@ -50,7 +50,7 @@ const WishList = props => {
                   onClick={() => props.storeTheItem(product)}
                 >
                   {props.disable.includes(product.productId)
-                    ? "Product Added"
+                    ? "Added to Cart"
                     : "Add to Cart"}
                 </button>
               </div>

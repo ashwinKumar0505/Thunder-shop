@@ -210,6 +210,7 @@ font-size: 1.2em;
   .eachItem{
     padding:0;
     margin:0;
+    padding-bottom: 5px;
   }
   .eachItem img{
     width:25%;

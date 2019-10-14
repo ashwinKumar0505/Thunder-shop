@@ -38,7 +38,8 @@
 
 .products {
   display: flex;
-  width: 100%
+  width: 100%;
+  flex-wrap: wrap;
 }
 
 .eachProduct {
@@ -46,6 +47,7 @@
   margin: 0px 30px;
   border: 1px solid #D4D5D9;
   position: relative;
+  margin-bottom: 30px;
 }
 .close{
   position:absolute;
@@ -83,4 +85,13 @@
 }
 .eachProduct button:disabled{
   color:grey;
+}
+@media (max-width:750px){
+  .products{
+    flex-direction: column;
+  }
+  .eachProduct{
+    width: 76%;
+    margin-bottom: 50px;
+  }
 }
