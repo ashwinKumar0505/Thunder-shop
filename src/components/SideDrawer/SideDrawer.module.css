@@ -12,6 +12,7 @@
   z-index: 500;
   left: 0;
   top: 0;
+  color:black;
 }
 
 .NavItems a:hover,

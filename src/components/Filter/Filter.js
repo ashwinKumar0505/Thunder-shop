@@ -47,7 +47,7 @@ const Filter = props => {
             type="checkbox"
             className={classes.CheckBox}
             onChange={event => {
-              props.setPriceRange(event, 299, 2897, 0);
+              props.setPriceRange(event, 0);
             }}
           />
           <label>Rs.299 to Rs.2897</label>
@@ -57,7 +57,7 @@ const Filter = props => {
             type="checkbox"
             className={classes.CheckBox}
             onChange={event => {
-              props.setPriceRange(event, 2897, 5495, 1);
+              props.setPriceRange(event, 1);
             }}
           />
           <label>Rs.2897 to 5495</label>
@@ -67,7 +67,7 @@ const Filter = props => {
             type="checkbox"
             className={classes.CheckBox}
             onChange={event => {
-              props.setPriceRange(event, 5495, 8093, 2);
+              props.setPriceRange(event, 2);
             }}
           />
           <label>Rs.5495 to 8093</label>

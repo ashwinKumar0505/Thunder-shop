@@ -70,12 +70,13 @@ class WomenCollection extends Component {
       });
     }
   };
-  setPriceRange = (event, initial, final, index) => {
-    const indexValue = index;
+  setPriceRange = (event,index) => {
+  const indexValue = index;
     const newPriceArray=this.state.price
-
+    console.log(indexValue)
+    console.log(newPriceArray)
     if (event.target.checked) {
-      newPriceArray[indexValue].present = true;
+      newPriceArray[indexValue].present=true
       this.setState({
         price:newPriceArray,
         loadMore: false,
@@ -89,7 +90,7 @@ class WomenCollection extends Component {
     }
 
     let initialAmount = 0;
-    let finalAmount = 9999;
+    let finalAmount = 99999;
     let count = 1;
     this.state.price.map(price => {
       if (price.present) {
@@ -104,8 +105,7 @@ class WomenCollection extends Component {
     this.setState({
       initialPrice: initialAmount,
       finalPrice: finalAmount,
-    });
-  };
+    });};
 
   setDiscountRange = (event, discount) => {
     this.setState({
@@ -184,11 +184,8 @@ class WomenCollection extends Component {
         <div className={classes.SearchDiv}>
           <p
             style={{
-              fontSize: "1.2em",
-              alignSelf: "center",
-              fontWeight: "900",
-              letterSpacing: "5px",
             }}
+            className={classes.title}
           >
             WOMEN COLLECTION
           </p>
@@ -201,6 +198,12 @@ class WomenCollection extends Component {
           </button>
           <br></br>
           <SearchField searchProduct={this.searchProduct} />
+          <div className={classes.toggleButton}>
+            <label className={classes.switch}>
+              <input type="checkbox" onClick={this.props.changeToDarkMode} checked={this.props.checked}/>
+              <span className={classes.slider}></span>
+            </label>
+          </div>
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>

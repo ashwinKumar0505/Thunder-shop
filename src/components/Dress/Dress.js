@@ -201,7 +201,7 @@ const Dress = props => {
           <p>Try checking your spelling or use more general terms</p>
         </div>
       ) : null}
-      {props.fetched && props.loadMore ? (
+      {props.filterBrands.length===0 && props.productToBeSearched==="" && props.loadMore ? (
         <div className={classes.spinner}>
           <Spinner2 />
         </div>

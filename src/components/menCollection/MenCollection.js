@@ -40,7 +40,7 @@ class MenCollection extends Component {
     ],
     discountArray: [],
     selectedOption: "option0",
-    productToBeSearched: null,
+    productToBeSearched: "",
     loadMore: true,
     showModal: false,
   };
@@ -68,25 +68,25 @@ class MenCollection extends Component {
       });
     }
   };
-  setPriceRange = (event, initial, final, index) => {
+  setPriceRange = (event, index) => {
     const indexValue = index;
-    const newPriceArray=this.state.price
+    const newPriceArray = this.state.price;
     if (event.target.checked) {
       newPriceArray[indexValue].present = true;
       this.setState({
-        price:newPriceArray,
+        price: newPriceArray,
         loadMore: false,
       });
     } else {
       newPriceArray[indexValue].present = false;
       this.setState({
-        price:newPriceArray,
+        price: newPriceArray,
         loadMore: true,
       });
     }
 
     let initialAmount = 0;
-    let finalAmount = 9999;
+    let finalAmount = 99999;
     let count = 1;
     this.state.price.map(price => {
       if (price.present) {
@@ -111,12 +111,12 @@ class MenCollection extends Component {
     });
   };
   clearFilters = () => {
-    const newPriceArray=this.state.price
+    const newPriceArray = this.state.price;
     newPriceArray[0].present = false;
     newPriceArray[1].present = false;
     newPriceArray[2].present = false;
     this.setState({
-      price:newPriceArray,
+      price: newPriceArray,
       filterBrands: [],
       selectedOption: "option0",
       discount: 0,
@@ -175,14 +175,7 @@ class MenCollection extends Component {
           price={this.state.price}
         />
         <div className={classes.SearchDiv}>
-          <p
-            style={{
-              fontSize: "1.2em",
-              alignSelf: "center",
-              fontWeight: "900",
-              letterSpacing: "5px",
-            }}
-          >
+          <p className={classes.title} >
             MEN COLLECTION
           </p>
           <br></br>
@@ -194,6 +187,13 @@ class MenCollection extends Component {
           </button>
           <br></br>
           <SearchField searchProduct={this.searchProduct} />
+
+          <div className={classes.toggleButton}>
+            <label className={classes.switch}>
+              <input type="checkbox" onClick={this.props.changeToDarkMode} checked={this.props.checked}/>
+              <span className={classes.slider}></span>
+            </label>
+          </div>
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>
