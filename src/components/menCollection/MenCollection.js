@@ -47,14 +47,21 @@ class MenCollection extends Component {
   filteringItems = event => {
     const brandName = event.target.name;
     if (event.target.checked) {
-      this.setState({
-        filterBrands: [...this.state.filterBrands, brandName],
-        loadMore: false,
+      this.setState(prevState => {
+        let newFilterBrands = prevState.filterBrands.concat(brandName);
+        return {
+          filterBrands: newFilterBrands,
+          loadMore: false,
+        };
       });
     } else {
-      const index = this.state.filterBrands.indexOf(brandName);
-      const newFilterBrands = [this.state.filterBrands];
-      newFilterBrands.splice(index, 1);
+      const newFilterBrands = this.state.filterBrands.filter(filterBrand => {
+        if (filterBrand === brandName) {
+          return null;
+        } else {
+          return filterBrand;
+        }
+      });
       this.setState({
         filterBrands: newFilterBrands,
         loadMore: true,
@@ -63,14 +70,17 @@ class MenCollection extends Component {
   };
   setPriceRange = (event, initial, final, index) => {
     const indexValue = index;
+    const newPriceArray=this.state.price
     if (event.target.checked) {
-      this.state.price[indexValue].present = true;
+      newPriceArray[indexValue].present = true;
       this.setState({
+        price:newPriceArray,
         loadMore: false,
       });
     } else {
-      this.state.price[indexValue].present = false;
+      newPriceArray[indexValue].present = false;
       this.setState({
+        price:newPriceArray,
         loadMore: true,
       });
     }
@@ -100,17 +110,19 @@ class MenCollection extends Component {
       discount: discount,
     });
   };
-  clearFilters=()=>{
-      this.state.price[0].present = false;
-      this.state.price[1].present = false;
-      this.state.price[2].present = false;
+  clearFilters = () => {
+    const newPriceArray=this.state.price
+    newPriceArray[0].present = false;
+    newPriceArray[1].present = false;
+    newPriceArray[2].present = false;
     this.setState({
-      filterBrands:[],
-      selectedOption:"option0",
-      discount:0,
-      loadMore:true
-    })
-  }
+      price:newPriceArray,
+      filterBrands: [],
+      selectedOption: "option0",
+      discount: 0,
+      loadMore: true,
+    });
+  };
 
   handleScroll = () => {
     if (this.state.loadMore) {
@@ -142,13 +154,11 @@ class MenCollection extends Component {
     });
   };
   changeModalState = () => {
-    console.log("here");
     this.setState({
       showModal: !this.state.showModal,
     });
   };
   render() {
-    console.log(this.props)
     return (
       <div className={classes.MenCollection} style={{ overflow: "hidden" }}>
         <Modal

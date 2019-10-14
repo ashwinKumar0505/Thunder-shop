@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import Spinner2 from "../Spinner2/Spinner2";
 import { storeTheItem } from "../../store/action/CartActionCreators";
 import {
@@ -33,6 +32,33 @@ const Dress = props => {
             ) {
               return (
                 <div className={classes.EachDress} key={product.productId}>
+                  {props.productId.includes(product.productId) ? (
+                    <img
+                      src={redHeart}
+                      alt="red-heart"
+                      width="30px"
+                      height="25px"
+                      className={classes.emptyHeart}
+                      onClick={event => {
+                        event.stopPropagation();
+                        event.nativeEvent.stopImmediatePropagation();
+                        props.removeFromWishList(product.productId);
+                      }}
+                    />
+                  ) : (
+                    <img
+                      src={Heart}
+                      alt="heart"
+                      width="30px"
+                      height="25px"
+                      className={classes.emptyHeart}
+                      onClick={event => {
+                        event.stopPropagation();
+                        event.nativeEvent.stopImmediatePropagation();
+                        props.storeInWishList(product);
+                      }}
+                    />
+                  )}
                   <img
                     src={product.imagesArray[0]}
                     alt="dress"
@@ -85,7 +111,7 @@ const Dress = props => {
                     className={classes.EachDress}
                     key={product.productId}
                     onClick={() => {
-                      props.history.push("/each-product",product)
+                      props.history.push("/each-product", product);
                     }}
                   >
                     {props.productId.includes(product.productId) ? (
@@ -139,7 +165,6 @@ const Dress = props => {
                       className={classes.CartButton}
                       disabled={props.disable.includes(product.productId)}
                       onClick={event => {
-                        console.log("yes");
                         event.stopPropagation();
                         event.nativeEvent.stopImmediatePropagation();
                         props.storeTheItem(product);

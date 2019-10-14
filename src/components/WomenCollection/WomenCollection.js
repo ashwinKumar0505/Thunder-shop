@@ -49,14 +49,21 @@ class WomenCollection extends Component {
   filteringItems = event => {
     const brandName = event.target.name;
     if (event.target.checked) {
-      this.setState({
-        filterBrands: [...this.state.filterBrands, brandName],
-        loadMore: false,
+      this.setState(prevState => {
+        let newFilterBrands = prevState.filterBrands.concat(brandName);
+        return {
+          filterBrands: newFilterBrands,
+          loadMore: false,
+        };
       });
     } else {
-      const index = this.state.filterBrands.indexOf(brandName);
-      const newFilterBrands = [this.state.filterBrands];
-      newFilterBrands.splice(index, 1);
+      const newFilterBrands = this.state.filterBrands.filter(filterBrand => {
+        if (filterBrand === brandName) {
+          return null;
+        } else {
+          return filterBrand;
+        }
+      });
       this.setState({
         filterBrands: newFilterBrands,
         loadMore: true,
@@ -65,14 +72,18 @@ class WomenCollection extends Component {
   };
   setPriceRange = (event, initial, final, index) => {
     const indexValue = index;
+    const newPriceArray=this.state.price
+
     if (event.target.checked) {
-      this.state.price[indexValue].present = true;
+      newPriceArray[indexValue].present = true;
       this.setState({
+        price:newPriceArray,
         loadMore: false,
       });
     } else {
-      this.state.price[indexValue].present = false;
+      newPriceArray[indexValue].present = false;
       this.setState({
+        price:newPriceArray,
         loadMore: true,
       });
     }
@@ -120,10 +131,12 @@ class WomenCollection extends Component {
   };
 
   clearFilters = () => {
-    this.state.price[0].present = false;
-    this.state.price[1].present = false;
-    this.state.price[2].present = false;
+    const newPriceArray = this.state.price;
+    newPriceArray[0].present = false;
+    newPriceArray[1].present = false;
+    newPriceArray[2].present = false;
     this.setState({
+      price: newPriceArray,
       filterBrands: [],
       selectedOption: "option0",
       discount: 0,

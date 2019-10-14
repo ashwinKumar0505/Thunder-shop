@@ -101,7 +101,7 @@ const MyCart = props => {
                       </p>
                     </div>
                     <div>
-                      <p style={{width: "103px"}}>
+                      <p>
                         <span style={{ textDecoration: "line-through" }}>
                           &#8377;{item.crossedPrice * quantity}
                         </span>{" "}
