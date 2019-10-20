@@ -216,7 +216,6 @@ class MenCollection extends Component {
               discount={this.state.discount}
               productToBeSearched={this.state.productToBeSearched}
               loadMore={this.state.loadMore}
-              history={this.props.history}
             />
           </div>
         </div>

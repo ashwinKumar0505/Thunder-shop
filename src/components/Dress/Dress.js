@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import Spinner2 from "../Spinner2/Spinner2";
 import { storeTheItem } from "../../store/action/CartActionCreators";
 import {
@@ -31,7 +32,9 @@ const Dress = props => {
               product.discount >= props.discount
             ) {
               return (
-                <div className={classes.EachDress} key={product.productId}>
+                <div className={classes.EachDress} key={product.productId}  onClick={() => {
+                      props.history.push("/each-product", product);
+                    }}>
                   {props.productId.includes(product.productId) ? (
                     <img
                       src={redHeart}
@@ -227,7 +230,7 @@ const mapDispatchToProps = dispatch => {
     removeFromWishList: productId => dispatch(removeFromWishList(productId)),
   };
 };
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Dress);
+)(Dress));
