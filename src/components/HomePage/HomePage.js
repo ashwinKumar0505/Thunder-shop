@@ -32,7 +32,7 @@ const HomePage=()=>{
       <Switch>
         <Route path="/all-collection" render={()=><AllCollection changeToDarkMode={changeToDarkMode} checked={checked}/>}/>
         <Route path="/men-collection" render={()=><MenCollection changeToDarkMode={changeToDarkMode} checked={checked}/>} />
-        <Route path="/women-collection" render={()=><WomenCollection changeToDarkMode={changeToDarkMode} ch ecked={checked}/>} />
+        <Route path="/women-collection" render={()=><WomenCollection changeToDarkMode={changeToDarkMode} checked={checked}/>} />
         <Route path="/each-product" component={EachProduct} />
         <Route path="/my-cart" component={MyCart} /> 
         <Route path="/wish-list" component={WishList} />
