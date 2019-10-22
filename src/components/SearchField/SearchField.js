@@ -5,7 +5,7 @@ const SearchField=(props)=>{
   return (
     <div className={classes.SearchField}>
       <div className={classes.searchIcon}>
-     <i class="fa fa-search" ></i>
+     <i class="fa fa-search" style={{color:"black"}}></i>
      </div>
     <input type="text" className={classes.search} placeholder="Search for products,brands and more" onChange={props.searchProduct}/>
     </div>

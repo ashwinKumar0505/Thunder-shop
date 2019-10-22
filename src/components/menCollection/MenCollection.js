@@ -40,43 +40,53 @@ class MenCollection extends Component {
     ],
     discountArray: [],
     selectedOption: "option0",
-    productToBeSearched: null,
+    productToBeSearched: "",
     loadMore: true,
     showModal: false,
   };
   filteringItems = event => {
     const brandName = event.target.name;
     if (event.target.checked) {
-      this.setState({
-        filterBrands: [...this.state.filterBrands, brandName],
-        loadMore: false,
+      this.setState(prevState => {
+        let newFilterBrands = prevState.filterBrands.concat(brandName);
+        return {
+          filterBrands: newFilterBrands,
+          loadMore: false,
+        };
       });
     } else {
-      const index = this.state.filterBrands.indexOf(brandName);
-      const newFilterBrands = [this.state.filterBrands];
-      newFilterBrands.splice(index, 1);
+      const newFilterBrands = this.state.filterBrands.filter(filterBrand => {
+        if (filterBrand === brandName) {
+          return null;
+        } else {
+          return filterBrand;
+        }
+      });
       this.setState({
         filterBrands: newFilterBrands,
         loadMore: true,
       });
     }
   };
-  setPriceRange = (event, initial, final, index) => {
+  setPriceRange = (event, index) => {
     const indexValue = index;
+    const newPriceArray = this.state.price;
     if (event.target.checked) {
-      this.state.price[indexValue].present = true;
+      newPriceArray[indexValue].present = true;
       this.setState({
+        price: newPriceArray,
         loadMore: false,
       });
     } else {
-      this.state.price[indexValue].present = false;
+      newPriceArray[indexValue].present = false;
       this.setState({
+        price: newPriceArray,
         loadMore: true,
       });
     }
 
     let initialAmount = 0;
-    let finalAmount = 9999;
+    let finalAmount = 99999;
     let count = 1;
     this.state.price.map(price => {
       if (price.present) {
@@ -100,17 +110,19 @@ class MenCollection extends Component {
       discount: discount,
     });
   };
-  clearFilters=()=>{
-      this.state.price[0].present = false;
-      this.state.price[1].present = false;
-      this.state.price[2].present = false;
+  clearFilters = () => {
+    const newPriceArray = this.state.price;
+    newPriceArray[0].present = false;
+    newPriceArray[1].present = false;
+    newPriceArray[2].present = false;
     this.setState({
-      filterBrands:[],
-      selectedOption:"option0",
-      discount:0,
-      loadMore:true
-    })
-  }
+      price: newPriceArray,
+      filterBrands: [],
+      selectedOption: "option0",
+      discount: 0,
+      loadMore: true,
+    });
+  };
 
   handleScroll = () => {
     if (this.state.loadMore) {
@@ -142,13 +154,11 @@ class MenCollection extends Component {
     });
   };
   changeModalState = () => {
-    console.log("here");
     this.setState({
       showModal: !this.state.showModal,
     });
   };
   render() {
-    console.log(this.props)
     return (
       <div className={classes.MenCollection} style={{ overflow: "hidden" }}>
         <Modal
@@ -165,14 +175,7 @@ class MenCollection extends Component {
           price={this.state.price}
         />
         <div className={classes.SearchDiv}>
-          <p
-            style={{
-              fontSize: "1.2em",
-              alignSelf: "center",
-              fontWeight: "900",
-              letterSpacing: "5px",
-            }}
-          >
+          <p className={classes.title} >
             MEN COLLECTION
           </p>
           <br></br>
@@ -184,6 +187,13 @@ class MenCollection extends Component {
           </button>
           <br></br>
           <SearchField searchProduct={this.searchProduct} />
+
+          <div className={classes.toggleButton}>
+            <label className={classes.switch}>
+              <input type="checkbox" onClick={this.props.changeToDarkMode} checked={this.props.checked}/>
+              <span className={classes.slider}></span>
+            </label>
+          </div>
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>
@@ -206,7 +216,6 @@ class MenCollection extends Component {
               discount={this.state.discount}
               productToBeSearched={this.state.productToBeSearched}
               loadMore={this.state.loadMore}
-              history={this.props.history}
             />
           </div>
         </div>

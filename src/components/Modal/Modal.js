@@ -3,7 +3,6 @@ import FiltersModal from "../FiltersModal/FiltersModal";
 import classes from "./Modal.module.css";
 
 const Modal = props => {
-  console.log("here")
   return (
     <div
       className={classes.Modal}

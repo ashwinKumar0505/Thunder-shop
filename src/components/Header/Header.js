@@ -14,11 +14,11 @@ const Header = props => {
     setShowSideDrawer("none");
   };
   return (
-    <div className={classes.Header}>
+    <div className={classes.Header} style={{backgroundColor:props.color,color:props.textColor}}>
       <div className={classes.burger} onClick={showHandler}>
-        <div className={classes.line}></div>
-        <div className={classes.line}></div>
-        <div className={classes.line}></div>
+        <div className={classes.line} style={{backgroundColor:props.textColor}}></div>
+        <div className={classes.line} style={{backgroundColor:props.textColor}}></div>
+        <div className={classes.line} style={{backgroundColor:props.textColor}}></div>
       </div>
       <SideDrawer display={showSideDrawer} hideHandler={hideHandler} />
       <NavLink to="/" exact activeClassName={classes.active}>

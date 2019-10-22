@@ -47,36 +47,48 @@ class AllCollection extends Component {
   filteringItems = event => {
     const brandName = event.target.name;
     if (event.target.checked) {
-      this.setState({
-        filterBrands: [...this.state.filterBrands, brandName],
-        loadMore: false,
+      this.setState(prevState => {
+        let newFilterBrands = prevState.filterBrands.concat(brandName);
+        return {
+          filterBrands: newFilterBrands,
+          loadMore: false,
+        };
       });
     } else {
-      const index = this.state.filterBrands.indexOf(brandName);
-      const newFilterBrands = [this.state.filterBrands];
-      newFilterBrands.splice(index, 1);
+      const newFilterBrands = this.state.filterBrands.filter(filterBrand => {
+        if (filterBrand === brandName) {
+          return null;
+        } else {
+          return filterBrand;
+        }
+      });
       this.setState({
         filterBrands: newFilterBrands,
         loadMore: true,
       });
     }
   };
-  setPriceRange = (event, initial, final, index) => {
+  setPriceRange = (event, index) => {
     const indexValue = index;
+    const newPriceArray = this.state.price;
+    console.log(indexValue);
+    console.log(newPriceArray);
     if (event.target.checked) {
-      this.state.price[indexValue].present = true;
+      newPriceArray[indexValue].present = true;
       this.setState({
+        price: newPriceArray,
         loadMore: false,
       });
     } else {
-      this.state.price[indexValue].present = false;
+      newPriceArray[indexValue].present = false;
       this.setState({
+        price: newPriceArray,
         loadMore: true,
       });
     }
 
     let initialAmount = 0;
-    let finalAmount = 9999;
+    let finalAmount = 99999;
     let count = 1;
     this.state.price.map(price => {
       if (price.present) {
@@ -102,10 +114,12 @@ class AllCollection extends Component {
   };
 
   clearFilters = () => {
-    this.state.price[0].present = false;
-    this.state.price[1].present = false;
-    this.state.price[2].present = false;
+    const newPriceArray = this.state.price;
+    newPriceArray[0].present = false;
+    newPriceArray[1].present = false;
+    newPriceArray[2].present = false;
     this.setState({
+      price: newPriceArray,
       filterBrands: [],
       selectedOption: "option0",
       discount: 0,
@@ -167,14 +181,7 @@ class AllCollection extends Component {
           price={this.state.price}
         />
         <div className={classes.SearchDiv}>
-          <p
-            style={{
-              fontSize: "1.2em",
-              alignSelf: "center",
-              fontWeight: "900",
-              letterSpacing: "5px",
-            }}
-          >
+          <p className={classes.title} >
             ALL COLLECTION
           </p>
           <br></br>
@@ -186,6 +193,12 @@ class AllCollection extends Component {
           </button>
           <br></br>
           <SearchField searchProduct={this.searchProduct} />
+          <div className={classes.toggleButton}>
+            <label className={classes.switch}>
+              <input type="checkbox" onClick={this.props.changeToDarkMode} checked={this.props.checked}/>
+              <span className={classes.slider}></span>
+            </label>
+          </div>
         </div>
         <div className={classes.Products}>
           <div className={classes.Filters}>
@@ -208,7 +221,6 @@ class AllCollection extends Component {
               discount={this.state.discount}
               productToBeSearched={this.state.productToBeSearched}
               loadMore={this.state.loadMore}
-              history={this.props.history}
             />
           </div>
         </div>

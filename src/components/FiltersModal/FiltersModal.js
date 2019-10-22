@@ -162,7 +162,7 @@ const FilterModal = props => {
     );
   }
   return (
-    <div>
+    <div className={classes.filterModal}>
       <div className={classes.Header}>
         <div>
           <span

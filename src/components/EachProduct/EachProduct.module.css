@@ -4,8 +4,9 @@
 
 .EachProduct {
   width: 95%;
-  margin: 50px auto;
+  padding-top:50px;
   display: flex;
+  overflow: hidden;
 }
 
 .Images {
@@ -65,6 +66,7 @@
   padding: 10px;
   background-color: transparent;
   border: 1px solid #BFC0C6;
+  color:inherit;
   text-align: center;
   cursor: pointer;
   outline: none;

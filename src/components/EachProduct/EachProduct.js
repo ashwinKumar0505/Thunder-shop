@@ -28,6 +28,7 @@ const EachProduct = props => {
             </h3>
             <p style={{ color: "rgb(126, 127, 130)" }}>{state.title}</p>
           </div>
+          <br></br>
           <div className={classes.priceDesc}>
             <h4 style={{fontSize:"1em"}}>
               {" "}
