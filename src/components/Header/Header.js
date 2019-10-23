@@ -34,7 +34,7 @@ const Header = props => {
         <NavLink to="/women-collection" exact activeClassName={classes.active}>
           <p>WOMEN-SALE</p>
         </NavLink>
-        <NavLink to="/top" exact activeClassName={classes.active}>
+        <NavLink to="/top-brands" exact activeClassName={classes.active}>
           <p>TOP-BRANDS</p>
         </NavLink>
       </div>

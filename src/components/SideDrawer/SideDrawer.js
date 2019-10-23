@@ -16,7 +16,7 @@ const SideDrawer = (props) => {
       <NavLink to="/women-collection" onClick={props.hideHandler} exact activeClassName={classes.active}>
         <p>WOMEN-SALE</p>
       </NavLink>
-      <NavLink to="/top" onClick={props.hideHandler} exact activeClassName={classes.active}>
+      <NavLink to="/top-brands" onClick={props.hideHandler} exact activeClassName={classes.active}>
         <p>TOP-BRANDS</p>
       </NavLink>
     </div>

@@ -10,12 +10,14 @@ import Modal from "../Modal/Modal";
 
 class MenCollection extends Component {
   componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
     this.props.gettingMenDetails(this.props.page);
   }
-  componentDidUpdate() {
-    window.addEventListener("scroll", this.handleScroll);
-    return () => window.removeEventListener("scroll", this.handleScroll);
+
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
+
   state = {
     filterBrands: [],
     initialPrice: 0,
@@ -125,17 +127,13 @@ class MenCollection extends Component {
   };
 
   handleScroll = () => {
-    if (this.state.loadMore) {
-      if (
-        window.innerHeight + document.documentElement.scrollTop !==
-        document.documentElement.offsetHeight
-      )
-        return;
-      else {
-        this.props.gettingMenDetails(this.props.page);
-        return;
-      }
-    } else {
+    const d = document.documentElement;
+    const offset = d.scrollTop + window.innerHeight;
+    const height = d.offsetHeight;
+
+    if (offset===height) 
+    {
+      this.props.gettingMenDetails(this.props.page);
       return;
     }
   };
@@ -160,7 +158,7 @@ class MenCollection extends Component {
   };
   render() {
     return (
-      <div className={classes.MenCollection} style={{ overflow: "hidden" }}>
+      <div className={classes.MenCollection}>
         <Modal
           show={this.state.showModal}
           changeModalState={this.changeModalState}
@@ -175,9 +173,7 @@ class MenCollection extends Component {
           price={this.state.price}
         />
         <div className={classes.SearchDiv}>
-          <p className={classes.title} >
-            MEN COLLECTION
-          </p>
+          <p className={classes.title}>MEN COLLECTION</p>
           <br></br>
           <button
             className={classes.filterButton}
@@ -190,7 +186,11 @@ class MenCollection extends Component {
 
           <div className={classes.toggleButton}>
             <label className={classes.switch}>
-              <input type="checkbox" onClick={this.props.changeToDarkMode} checked={this.props.checked}/>
+              <input
+                type="checkbox"
+                onClick={this.props.changeToDarkMode}
+                checked={this.props.checked}
+              />
               <span className={classes.slider}></span>
             </label>
           </div>

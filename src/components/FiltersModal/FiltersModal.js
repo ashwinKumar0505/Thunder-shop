@@ -26,7 +26,7 @@ const FilterModal = props => {
               }
               array.push(data);
               return (
-                <div className={classes.BrandNames}>
+                <div className={classes.BrandNames} key={data.toLowerCase()}>
                   <input
                     type="checkbox"
                     className={classes.CheckBox}

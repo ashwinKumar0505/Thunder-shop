@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import Spinner2 from "../Spinner2/Spinner2";
@@ -204,6 +204,7 @@ const Dress = props => {
           <p>Try checking your spelling or use more general terms</p>
         </div>
       ) : null}
+      {console.log(props.filterBrands.length===0 && props.productToBeSearched==="" && props.loadMore)}
       {props.filterBrands.length===0 && props.productToBeSearched==="" && props.loadMore ? (
         <div className={classes.spinner}>
           <Spinner2 />

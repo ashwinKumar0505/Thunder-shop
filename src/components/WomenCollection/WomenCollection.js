@@ -41,7 +41,7 @@ class WomenCollection extends Component {
     ],
     discountArray: [],
     selectedOption: "option0",
-    productToBeSearched: null,
+    productToBeSearched: "",
     loadMore: true,
     showModal: false,
   };
@@ -167,7 +167,7 @@ class WomenCollection extends Component {
 
   render() {
     return (
-      <div className={classes.WomenCollection} style={{ overflow: "hidden" }}>
+      <div className={classes.WomenCollection}>
         <Modal
           show={this.state.showModal}
           changeModalState={this.changeModalState}

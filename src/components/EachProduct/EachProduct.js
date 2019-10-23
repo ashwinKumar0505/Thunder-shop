@@ -5,7 +5,6 @@ import { storeInWishList } from "../../store/action/WishList/WishActionCreators"
 import classes from "./EachProduct.module.css";
 
 const EachProduct = props => {
-  console.log(props);
   const state = props.location.state;
   return (
     <div className={classes.outerDiv}>

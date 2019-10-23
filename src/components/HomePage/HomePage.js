@@ -9,6 +9,7 @@ import AllCollection from "../AllCollection/AllCollection"
 import WishList from '../WishList/WishList';
 import EachProduct from "../EachProduct/EachProduct"
 import classes from './HomePage.module.css';
+import TopBrands from '../TopBrands/TopBrands';
 const HomePage=()=>{
   const [color,setColor]=useState("white")
   const [textColor,setTextColor]=useState("black")
@@ -36,6 +37,7 @@ const HomePage=()=>{
         <Route path="/each-product" component={EachProduct} />
         <Route path="/my-cart" component={MyCart} /> 
         <Route path="/wish-list" component={WishList} />
+        <Route path="/top-brands"  component={TopBrands} />
         <Route path="/" component={ChooseGender} />
       </Switch>
       </div>

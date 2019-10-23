@@ -8,7 +8,7 @@ const initialState = {
 const CartReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.STORE_THE_ITEM:
-      return {
+    return {
         ...state,
         items: [...state.items, action.itemDetails],
         disable:[...state.disable,action.itemDetails.productId]

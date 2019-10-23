@@ -40,7 +40,7 @@ class AllCollection extends Component {
     ],
     discountArray: [],
     selectedOption: "option0",
-    productToBeSearched: null,
+    productToBeSearched: "",
     loadMore: true,
     showModal: false,
   };
@@ -166,7 +166,7 @@ class AllCollection extends Component {
 
   render() {
     return (
-      <div className={classes.AllCollection} style={{ overflow: "hidden" }}>
+      <div className={classes.AllCollection}>
         <Modal
           show={this.state.showModal}
           changeModalState={this.changeModalState}
