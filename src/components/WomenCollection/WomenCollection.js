@@ -46,10 +46,10 @@ class WomenCollection extends Component {
     showModal: false,
   };
 
-  filteringItems = event => {
+  filteringItems = (event) => {
     const brandName = event.target.name;
     if (event.target.checked) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         let newFilterBrands = prevState.filterBrands.concat(brandName);
         return {
           filterBrands: newFilterBrands,
@@ -57,7 +57,7 @@ class WomenCollection extends Component {
         };
       });
     } else {
-      const newFilterBrands = this.state.filterBrands.filter(filterBrand => {
+      const newFilterBrands = this.state.filterBrands.filter((filterBrand) => {
         if (filterBrand === brandName) {
           return null;
         } else {
@@ -70,21 +70,21 @@ class WomenCollection extends Component {
       });
     }
   };
-  setPriceRange = (event,index) => {
-  const indexValue = index;
-    const newPriceArray=this.state.price
-    console.log(indexValue)
-    console.log(newPriceArray)
+  setPriceRange = (event, index) => {
+    const indexValue = index;
+    const newPriceArray = this.state.price;
+    console.log(indexValue);
+    console.log(newPriceArray);
     if (event.target.checked) {
-      newPriceArray[indexValue].present=true
+      newPriceArray[indexValue].present = true;
       this.setState({
-        price:newPriceArray,
+        price: newPriceArray,
         loadMore: false,
       });
     } else {
       newPriceArray[indexValue].present = false;
       this.setState({
-        price:newPriceArray,
+        price: newPriceArray,
         loadMore: true,
       });
     }
@@ -92,7 +92,7 @@ class WomenCollection extends Component {
     let initialAmount = 0;
     let finalAmount = 99999;
     let count = 1;
-    this.state.price.map(price => {
+    this.state.price.forEach((price) => {
       if (price.present) {
         if (count === 1) {
           initialAmount = price.initial;
@@ -105,7 +105,8 @@ class WomenCollection extends Component {
     this.setState({
       initialPrice: initialAmount,
       finalPrice: finalAmount,
-    });};
+    });
+  };
 
   setDiscountRange = (event, discount) => {
     this.setState({
@@ -144,7 +145,7 @@ class WomenCollection extends Component {
     });
   };
 
-  searchProduct = event => {
+  searchProduct = (event) => {
     if (event.target.value) {
       this.setState({
         loadMore: false,
@@ -182,11 +183,7 @@ class WomenCollection extends Component {
           price={this.state.price}
         />
         <div className={classes.SearchDiv}>
-          <p
-            style={{
-            }}
-            className={classes.title}
-          >
+          <p style={{}} className={classes.title}>
             WOMEN COLLECTION
           </p>
           <br></br>
@@ -200,7 +197,11 @@ class WomenCollection extends Component {
           <SearchField searchProduct={this.searchProduct} />
           <div className={classes.toggleButton}>
             <label className={classes.switch}>
-              <input type="checkbox" onClick={this.props.changeToDarkMode} checked={this.props.checked}/>
+              <input
+                type="checkbox"
+                onClick={this.props.changeToDarkMode}
+                checked={this.props.checked}
+              />
               <span className={classes.slider}></span>
             </label>
           </div>
@@ -233,19 +234,16 @@ class WomenCollection extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     women: state.Reducer.women,
     fetched: state.Reducer.fetched,
     page: state.Reducer.page,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    gettingWomenDetails: page => dispatch(gettingWomenDetails(page)),
+    gettingWomenDetails: (page) => dispatch(gettingWomenDetails(page)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(WomenCollection);
+export default connect(mapStateToProps, mapDispatchToProps)(WomenCollection);

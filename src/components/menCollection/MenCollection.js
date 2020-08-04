@@ -46,10 +46,10 @@ class MenCollection extends Component {
     loadMore: true,
     showModal: false,
   };
-  filteringItems = event => {
+  filteringItems = (event) => {
     const brandName = event.target.name;
     if (event.target.checked) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         let newFilterBrands = prevState.filterBrands.concat(brandName);
         return {
           filterBrands: newFilterBrands,
@@ -57,7 +57,7 @@ class MenCollection extends Component {
         };
       });
     } else {
-      const newFilterBrands = this.state.filterBrands.filter(filterBrand => {
+      const newFilterBrands = this.state.filterBrands.filter((filterBrand) => {
         if (filterBrand === brandName) {
           return null;
         } else {
@@ -90,7 +90,7 @@ class MenCollection extends Component {
     let initialAmount = 0;
     let finalAmount = 99999;
     let count = 1;
-    this.state.price.map(price => {
+    this.state.price.forEach((price) => {
       if (price.present) {
         if (count === 1) {
           initialAmount = price.initial;
@@ -131,13 +131,12 @@ class MenCollection extends Component {
     const offset = d.scrollTop + window.innerHeight;
     const height = d.offsetHeight;
 
-    if (offset===height) 
-    {
+    if (offset === height) {
       this.props.gettingMenDetails(this.props.page);
       return;
     }
   };
-  searchProduct = event => {
+  searchProduct = (event) => {
     if (event.target.value) {
       this.setState({
         loadMore: false,
@@ -224,19 +223,16 @@ class MenCollection extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     men: state.Reducer.men,
     fetched: state.Reducer.fetched,
     page: state.Reducer.page,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    gettingMenDetails: page => dispatch(gettingMenDetails(page)),
+    gettingMenDetails: (page) => dispatch(gettingMenDetails(page)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(MenCollection);
+export default connect(mapStateToProps, mapDispatchToProps)(MenCollection);

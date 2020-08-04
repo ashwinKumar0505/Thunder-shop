@@ -44,10 +44,10 @@ class AllCollection extends Component {
     loadMore: true,
     showModal: false,
   };
-  filteringItems = event => {
+  filteringItems = (event) => {
     const brandName = event.target.name;
     if (event.target.checked) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         let newFilterBrands = prevState.filterBrands.concat(brandName);
         return {
           filterBrands: newFilterBrands,
@@ -55,7 +55,7 @@ class AllCollection extends Component {
         };
       });
     } else {
-      const newFilterBrands = this.state.filterBrands.filter(filterBrand => {
+      const newFilterBrands = this.state.filterBrands.filter((filterBrand) => {
         if (filterBrand === brandName) {
           return null;
         } else {
@@ -90,7 +90,7 @@ class AllCollection extends Component {
     let initialAmount = 0;
     let finalAmount = 99999;
     let count = 1;
-    this.state.price.map(price => {
+    this.state.price.forEach((price) => {
       if (price.present) {
         if (count === 1) {
           initialAmount = price.initial;
@@ -143,7 +143,7 @@ class AllCollection extends Component {
     }
   };
 
-  searchProduct = event => {
+  searchProduct = (event) => {
     if (event.target.value) {
       this.setState({
         loadMore: false,
@@ -181,9 +181,7 @@ class AllCollection extends Component {
           price={this.state.price}
         />
         <div className={classes.SearchDiv}>
-          <p className={classes.title} >
-            ALL COLLECTION
-          </p>
+          <p className={classes.title}>ALL COLLECTION</p>
           <br></br>
           <button
             className={classes.filterButton}
@@ -195,7 +193,11 @@ class AllCollection extends Component {
           <SearchField searchProduct={this.searchProduct} />
           <div className={classes.toggleButton}>
             <label className={classes.switch}>
-              <input type="checkbox" onClick={this.props.changeToDarkMode} checked={this.props.checked}/>
+              <input
+                type="checkbox"
+                onClick={this.props.changeToDarkMode}
+                checked={this.props.checked}
+              />
               <span className={classes.slider}></span>
             </label>
           </div>
@@ -228,19 +230,16 @@ class AllCollection extends Component {
     );
   }
 }
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     details: state.Reducer.details,
     fetched: state.Reducer.fetched,
     page: state.Reducer.page,
   };
 };
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    gettingAllDetails: page => dispatch(gettingAllDetails(page)),
+    gettingAllDetails: (page) => dispatch(gettingAllDetails(page)),
   };
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AllCollection);
+export default connect(mapStateToProps, mapDispatchToProps)(AllCollection);
